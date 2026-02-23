@@ -1,0 +1,374 @@
+/**
+ * Spatial Sections — Shared styles for Design and Tech section views
+ * 
+ * Full-viewport sections that slide in from edges
+ */
+
+/* ==========================
+   Section Layout
+   ========================== */
+
+.spatial-section {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 4rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.spatial-section--design {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1208 100%);
+}
+
+.spatial-section--tech {
+  background: linear-gradient(225deg, #0d0d0d 0%, #081218 100%);
+}
+
+/* ==========================
+   Back Button
+   ========================== */
+
+.section-back {
+  position: fixed;
+  top: 2rem;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.section-back--left {
+  left: 2rem;
+}
+
+.section-back--right {
+  right: 2rem;
+}
+
+.section-back:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.back-arrow {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.section-back--left:hover .back-arrow {
+  transform: translateX(4px);
+}
+
+.section-back--right:hover .back-arrow {
+  transform: translateX(-4px);
+}
+
+/* ==========================
+   Section Header
+   ========================== */
+
+.section-header {
+  position: relative;
+  z-index: 10;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.section-header--left {
+  text-align: left;
+}
+
+.section-header--right {
+  text-align: right;
+}
+
+.section-title {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 1rem;
+}
+
+.section-title--design {
+  font-family: 'Playfair Display', serif;
+  color: #c4703a;
+}
+
+.section-title--tech {
+  font-family: 'Inter', sans-serif;
+  color: #3a7cc4;
+}
+
+.section-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* ==========================
+   Work Grid
+   ========================== */
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==========================
+   Work Card
+   ========================== */
+
+.work-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.work-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.work-card--design:hover {
+  border-color: rgba(196, 112, 58, 0.4);
+  box-shadow: 0 20px 60px -20px rgba(196, 112, 58, 0.2);
+}
+
+.work-card--tech:hover {
+  border-color: rgba(58, 124, 196, 0.4);
+  box-shadow: 0 20px 60px -20px rgba(58, 124, 196, 0.2);
+}
+
+.work-card__visual {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  position: relative;
+}
+
+.work-card--design .work-card__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(196, 112, 58, 0.1) 0%,
+    transparent 60%
+  );
+}
+
+.work-card--tech .work-card__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    225deg,
+    rgba(58, 124, 196, 0.1) 0%,
+    transparent 60%
+  );
+}
+
+.work-card__content {
+  padding: 1.5rem;
+}
+
+.work-card__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.work-card__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+/* ==========================
+   Tags
+   ========================== */
+
+.work-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid;
+}
+
+.tag--design {
+  color: #c4703a;
+  border-color: rgba(196, 112, 58, 0.3);
+  background: rgba(196, 112, 58, 0.1);
+}
+
+.tag--tech {
+  color: #3a7cc4;
+  border-color: rgba(58, 124, 196, 0.3);
+  background: rgba(58, 124, 196, 0.1);
+}
+
+/* ==========================
+   CTA Link
+   ========================== */
+
+.section-cta {
+  margin-top: auto;
+  padding: 2rem 1rem 1rem;
+}
+
+.section-cta--left {
+  text-align: left;
+}
+
+.section-cta--right {
+  text-align: right;
+}
+
+.cta-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cta-link--design {
+  color: #c4703a;
+}
+
+.cta-link--design:hover {
+  color: #e08550;
+}
+
+.cta-link--tech {
+  color: #3a7cc4;
+}
+
+.cta-link--tech:hover {
+  color: #5098e0;
+}
+
+/* ==========================
+   Background Accents
+   ========================== */
+
+.section-bg {
+  position: fixed;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.section-bg--design {
+  bottom: -20vw;
+  left: -10vw;
+  background: #c4703a;
+}
+
+.section-bg--tech {
+  bottom: -20vw;
+  right: -10vw;
+  background: #3a7cc4;
+}
+
+/* ==========================
+   Responsive
+   ========================== */
+
+@media (max-width: 768px) {
+  .spatial-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .section-back {
+    top: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .section-back--left {
+    left: 1rem;
+  }
+  
+  .section-back--right {
+    right: 1rem;
+  }
+  
+  .section-header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .section-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .work-card__content {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spatial-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .section-header {
+    margin-top: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}

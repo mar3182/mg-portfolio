@@ -1,0 +1,160 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CINEMATIC HERO — CSS Styles
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Design tokens and base styles for the dual-identity hero system.
+ */
+
+/* ═══ DESIGN TOKENS ═══ */
+:root {
+  /* Design Side (warm, organic) */
+  --design-orange: #e77a2f;
+  --design-coral: #ff8c42;
+  --design-gold: #ffc93c;
+  --design-blue: #1e3a5f;
+  --design-navy: #1a2a4a;
+  --design-bg: #0f0c09;
+  --design-bg-alt: #1a1510;
+  
+  /* Tech Side (cool, digital) */
+  --tech-green: #00ff9c;
+  --tech-cyan: #1be7ff;
+  --tech-blue: #3a9cc4;
+  --tech-bg: #080a0f;
+  --tech-bg-alt: #0d1117;
+  
+  /* Neutral */
+  --neutral-bg: #0d0d0d;
+  --neutral-text: #f0f0f0;
+}
+
+/* ═══ BASE HERO STYLES ═══ */
+.cinematic-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  cursor: none; /* Hide default cursor for custom cursor */
+}
+
+/* ═══ LAYER Z-INDEX STACK ═══ */
+.ambient-base { z-index: 0; }
+.light-bloom { z-index: 5; }
+.organic-background { z-index: 10; }
+.matrix-background { z-index: 10; }
+.portrait-container { z-index: 20; }
+.vignette-overlay { z-index: 99; }
+.grain-overlay { z-index: 100; }
+
+/* ═══ SVG LAYER ANIMATIONS ═══ */
+.organic-svg,
+.matrix-svg {
+  transition: transform 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Subtle breathing animation for organic elements */
+@keyframes organic-breathe {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.01) translateY(-2px);
+  }
+}
+
+.organic-layer-2,
+.organic-layer-3 {
+  animation: organic-breathe 8s ease-in-out infinite;
+}
+
+.organic-layer-1 {
+  animation: organic-breathe 12s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* Matrix pulse animation */
+@keyframes matrix-pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.matrix-nodes circle {
+  animation: matrix-pulse 3s ease-in-out infinite;
+}
+
+.matrix-nodes circle:nth-child(odd) {
+  animation-delay: -1.5s;
+}
+
+/* ═══ PORTRAIT STYLES ═══ */
+.portrait-container {
+  /* Center the portrait */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait-container img {
+  /* Prevent selection/drag */
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* ═══ AMBIENT LAYER STYLES ═══ */
+.grain-overlay {
+  /* Grain uses overlay blend for natural film look */
+  mix-blend-mode: overlay;
+}
+
+.vignette-overlay {
+  /* Vignette uses multiply for deep edges */
+  mix-blend-mode: multiply;
+}
+
+/* ═══ MOTION PRINCIPLES ═══ */
+/* Per spec: "Motion should feel inevitable, not impressive" */
+
+/* All motion elements use cinematic easing */
+.cinematic-hero * {
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Prevent layout thrashing during animation */
+.organic-background,
+.matrix-background,
+.portrait-container {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* ═══ RESPONSIVE ADJUSTMENTS ═══ */
+@media (max-width: 768px) {
+  .cinematic-hero {
+    /* Touch-friendly on mobile */
+    cursor: auto;
+  }
+  
+  .portrait-container img {
+    max-width: 85vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .organic-layer-1,
+  .organic-layer-2,
+  .organic-layer-3,
+  .matrix-nodes circle {
+    animation: none;
+  }
+  
+  .organic-background,
+  .matrix-background {
+    transition-duration: 0.5s;
+  }
+}

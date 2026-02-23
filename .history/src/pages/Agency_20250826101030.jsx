@@ -1,0 +1,67 @@
+import React from 'react'
+import { motion as Motion } from 'framer-motion'
+import '../akaru-styles.css'
+import { team, awards, clients } from '../data/agency'
+
+const fadeUp = {
+  hidden: { opacity:0, y: 30 },
+  visible: i => ({ opacity:1, y:0, transition:{ delay: i * 0.07, duration:0.6, ease:[0.4,0,0.2,1] } })
+}
+
+export default function Agency() {
+  return (
+    <section className="agency-section" aria-labelledby="agency-heading">
+      <div className="agency-inner">
+        <Motion.h1
+          id="agency-heading"
+          className="section-title"
+          initial={{ opacity:0, y:40 }}
+          animate={{ opacity:1, y:0 }}
+          transition={{ duration:0.7, ease:[0.4,0,0.2,1] }}
+        >Agency</Motion.h1>
+        <Motion.p className="agency-intro" initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:.25 }}>We craft beautiful experiences — creative, passionate, independent.</Motion.p>
+        <div className="agency-values">
+          {['Creative','Passionate','Independent'].map((v,i) => (
+            <Motion.div key={v} className="agency-value" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once:true }} custom={i}>{v}</Motion.div>
+          ))}
+        </div>
+
+        <section className="team-section" aria-labelledby="team-heading">
+          <h2 id="team-heading" className="sub-title">Team</h2>
+          <ul className="team-grid">
+            {team.map((m,i) => (
+              <Motion.li key={m.id} className="team-card" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once:true }} custom={i}>
+                <div className="team-photo" aria-hidden="true">{m.name[0]}</div>
+                <div className="team-meta">
+                  <h3 className="team-name">{m.name}</h3>
+                  <p className="team-role">{m.role}</p>
+                </div>
+              </Motion.li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="awards-section" aria-labelledby="awards-heading">
+            <h2 id="awards-heading" className="sub-title">Awards</h2>
+            <ul className="awards-list">
+              {awards.map((a,i) => (
+                <Motion.li key={a.id} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once:true }} custom={i}>
+                  <span className="award-year">{a.year}</span>
+                  <span className="award-title">{a.title}</span>
+                </Motion.li>
+              ))}
+            </ul>
+        </section>
+
+        <section className="clients-section" aria-labelledby="clients-heading">
+          <h2 id="clients-heading" className="sub-title">Clients</h2>
+          <ul className="clients-grid">
+            {clients.map((c,i) => (
+              <Motion.li key={c} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once:true }} custom={i}>{c}</Motion.li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,232 @@
+/**
+ * SpatialHub Styles — Minimal Edge Navigation
+ * 
+ * Philosophy: Nearly invisible. Just arrows on hover.
+ * The SplitPortraitHero handles all identity/content display.
+ */
+
+.spatial-hub {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.spatial-center {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EDGE NAVIGATION ZONES — Ultra Minimal
+   ═══════════════════════════════════════════════════════════ */
+.spatial-edge {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.spatial-edge:focus {
+  outline: none;
+}
+
+.spatial-edge:focus .edge-indicator {
+  opacity: 1;
+}
+
+/* Left edge - Design */
+.spatial-edge--left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 200px;
+  width: 60px;
+}
+
+/* Right edge - Tech */
+.spatial-edge--right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 200px;
+  width: 60px;
+}
+
+/* Top edge - About */
+.spatial-edge--top {
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  width: 100px;
+}
+
+/* Edge glow effect - very subtle */
+.edge-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.spatial-edge:hover .edge-glow {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EDGE INDICATOR — Just an arrow
+   ═══════════════════════════════════════════════════════════ */
+.edge-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.spatial-edge:hover .edge-indicator {
+  opacity: 1;
+}
+
+.edge-arrow {
+  font-size: 1.5rem;
+  color: rgba(250, 250, 250, 0.6);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.spatial-edge--left:hover .edge-arrow {
+  transform: translateX(-4px);
+  color: #c4703a;
+}
+
+.spatial-edge--right:hover .edge-arrow {
+  transform: translateX(4px);
+  color: #3a7cc4;
+}
+
+.spatial-edge--top:hover .edge-arrow {
+  transform: translateY(-4px);
+  color: rgba(250, 250, 250, 0.9);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION HINTS
+   ═══════════════════════════════════════════════════════════ */
+.nav-hint {
+  position: fixed;
+  bottom: 30%;
+  z-index: 60;
+  padding: 0.75rem 1.25rem;
+  background: rgba(13, 13, 13, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: rgba(250, 250, 250, 0.8);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.nav-hint--left {
+  left: 2rem;
+}
+
+.nav-hint--right {
+  right: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL PROMPT
+   ═══════════════════════════════════════════════════════════ */
+.scroll-prompt {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 40;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, 0.5);
+}
+
+.scroll-prompt .scroll-arrow {
+  font-size: 1.2rem;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KEYBOARD HINT
+   ═══════════════════════════════════════════════════════════ */
+.keyboard-hint {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 40;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: rgba(250, 250, 250, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .spatial-edge--left,
+  .spatial-edge--right {
+    width: 100px;
+    padding: 1rem;
+  }
+  
+  .edge-label {
+    display: none;
+  }
+  
+  .edge-preview {
+    display: none;
+  }
+  
+  .nav-hint {
+    display: none;
+  }
+  
+  .keyboard-hint {
+    display: none;
+  }
+  
+  .scroll-prompt {
+    bottom: 1.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .edge-arrow,
+  .scroll-arrow,
+  .preview-item {
+    animation: none !important;
+  }
+}

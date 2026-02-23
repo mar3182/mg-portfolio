@@ -1,0 +1,302 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * DESIGN WORLD — Styles
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Visual language: warm, organic, handmade, imperfect
+ */
+
+.design-world {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--t-design-bg, #1a1410);
+  color: var(--t-neutral-text, #f0f0f0);
+  overflow: hidden;
+}
+
+/* ─── Background ─── */
+.design-world__bg {
+  position: absolute;
+  inset: -10%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.design-world__texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  /* TODO: Replace with actual scanned paper texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.design-world__gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 30% 40%,
+    rgba(196, 112, 58, 0.15) 0%,
+    transparent 60%
+  ),
+  radial-gradient(
+    ellipse 60% 80% at 70% 70%,
+    rgba(232, 154, 95, 0.1) 0%,
+    transparent 50%
+  );
+}
+
+/* ─── Back Button ─── */
+.design-world__back {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  color: var(--t-neutral-text);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.design-world__back:hover {
+  background: rgba(196, 112, 58, 0.15);
+  border-color: rgba(196, 112, 58, 0.3);
+}
+
+.design-world__back .back__arrow {
+  transition: transform 0.3s ease;
+}
+
+.design-world__back:hover .back__arrow {
+  transform: translateX(-4px);
+}
+
+/* ─── Header ─── */
+.design-world__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 6rem 5% 3rem;
+  background: linear-gradient(
+    to bottom,
+    var(--t-design-bg) 0%,
+    var(--t-design-bg) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  text-align: center;
+}
+
+.design-world__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--t-design-warm);
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1;
+}
+
+.design-world__subtitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: var(--t-neutral-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+/* ─── Content ─── */
+.design-world__content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12rem 5% 4rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Areas ─── */
+.design-world__areas {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.design-area {
+  display: grid;
+  gap: 2rem;
+}
+
+.design-area__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(196, 112, 58, 0.2);
+}
+
+.design-area__icon {
+  font-size: 2rem;
+  color: var(--area-color, var(--t-design-warm));
+  line-height: 1;
+}
+
+.design-area__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 500;
+  color: var(--t-neutral-text);
+  margin: 0;
+}
+
+.design-area__desc {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  color: var(--t-neutral-muted);
+  margin: 0;
+}
+
+/* ─── Projects ─── */
+.design-area__projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.design-project {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.design-project:hover {
+  background: rgba(196, 112, 58, 0.08);
+}
+
+.design-project__image {
+  aspect-ratio: 1;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.design-project__placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(196, 112, 58, 0.2) 0%,
+    rgba(232, 154, 95, 0.15) 100%
+  );
+}
+
+.design-project__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.design-project__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--t-neutral-text);
+  margin: 0;
+}
+
+.design-project__desc {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.875rem;
+  color: var(--t-neutral-muted);
+  margin: 0;
+}
+
+.design-project__year {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 0.75rem;
+  color: var(--t-design-warm);
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+/* ─── Footer ─── */
+.design-world__footer {
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.design-world__manifesto {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--t-neutral-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  border: none;
+  padding: 0;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .design-world__back {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .design-world__header {
+    padding: 4rem 5% 2rem;
+  }
+
+  .design-world__content {
+    padding: 10rem 5% 3rem;
+  }
+
+  .design-project {
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* ─── Scrollbar ─── */
+.design-world__content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.design-world__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.design-world__content::-webkit-scrollbar-thumb {
+  background: rgba(196, 112, 58, 0.3);
+  border-radius: 3px;
+}
+
+.design-world__content::-webkit-scrollbar-thumb:hover {
+  background: rgba(196, 112, 58, 0.5);
+}

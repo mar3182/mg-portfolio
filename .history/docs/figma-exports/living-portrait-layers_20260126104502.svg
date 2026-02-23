@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ═══════════════════════════════════════════════════════════════════════════
+  THE LIVING PORTRAIT — Figma Export
+  ═══════════════════════════════════════════════════════════════════════════
+  
+  LAYER STRUCTURE (bottom to top):
+  1. Background/Base
+  2. Background/Focal-Glow
+  3. Background/Warm-Atmosphere
+  4. Background/Cool-Atmosphere
+  5. Shapes/Design-Coral
+  6. Shapes/Design-Orange
+  7. Shapes/Tech-Purple
+  8. Shapes/Tech-Blue
+  9. Portraits/Design-Left
+  10. Portraits/Center-Main
+  11. Portraits/Tech-Right
+  12. Typography/Design-Label
+  13. Typography/Center-Headline
+  14. Typography/Tech-Label
+  15. Typography/Subline
+  16. Navigation/Sidebar
+  17. Navigation/Logo
+  18. Navigation/Links
+  19. Social/Icons
+  20. Social/Line
+  21. UI/Cursor
+  22. UI/Footer-Hint
+  
+  IMPORT INTO FIGMA:
+  1. File → Import (Ctrl/Cmd + Shift + K)
+  2. Select this SVG file
+  3. All layers will be editable groups
+  
+  ═══════════════════════════════════════════════════════════════════════════
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="30%" stop-color="#0f0f0f"/>
+      <stop offset="50%" stop-color="#151515"/>
+      <stop offset="70%" stop-color="#0f0f0f"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    
+    <radialGradient id="focal-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    
+    <radialGradient id="warm-atmosphere" cx="25%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff7850" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="#ff7850" stop-opacity="0"/>
+    </radialGradient>
+    
+    <radialGradient id="cool-atmosphere" cx="75%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00ff88" stop-opacity="0.08"/>
+      <stop offset="50%" stop-color="#00ff88" stop-opacity="0"/>
+    </radialGradient>
+    
+    <linearGradient id="coral-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b5b"/>
+      <stop offset="100%" stop-color="#ffb4a9"/>
+    </linearGradient>
+    
+    <linearGradient id="orange-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff9a3c"/>
+      <stop offset="100%" stop-color="#ff6b5b"/>
+    </linearGradient>
+    
+    <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    
+    <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    
+    <!-- Filters -->
+    <filter id="blur-100" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="100"/>
+    </filter>
+    
+    <filter id="blur-80" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="80"/>
+    </filter>
+    
+    <!-- Portrait placeholder pattern -->
+    <pattern id="portrait-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#1a1a1a"/>
+      <circle cx="10" cy="10" r="1" fill="#333"/>
+    </pattern>
+  </defs>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 1: BACKGROUND
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="Background">
+    <!-- Base dark gradient -->
+    <rect id="Base" x="0" y="0" width="1920" height="1080" fill="url(#bg-gradient)"/>
+    
+    <!-- Focal glow in center -->
+    <ellipse id="Focal-Glow" cx="960" cy="540" rx="576" ry="378" fill="url(#focal-glow)" filter="url(#blur-80)"/>
+    
+    <!-- Warm atmosphere (design side) - opacity 0.5 when on left -->
+    <rect id="Warm-Atmosphere" x="0" y="0" width="1920" height="1080" fill="url(#warm-atmosphere)" opacity="0.5"/>
+    
+    <!-- Cool atmosphere (tech side) - opacity 0.5 when on right -->
+    <rect id="Cool-Atmosphere" x="0" y="0" width="1920" height="1080" fill="url(#cool-atmosphere)" opacity="0.15"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 2: GRADIENT SHAPES
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="Shapes">
+    <!-- Design shapes (warm colors) -->
+    <g id="Design-Shapes" opacity="0.7">
+      <ellipse id="Shape-Coral" cx="432" cy="216" rx="336" ry="216" fill="url(#coral-gradient)" filter="url(#blur-100)" opacity="0.5"/>
+      <ellipse id="Shape-Orange" cx="480" cy="864" rx="240" ry="162" fill="url(#orange-gradient)" filter="url(#blur-100)" opacity="0.4"/>
+    </g>
+    
+    <!-- Tech shapes (cool colors) -->
+    <g id="Tech-Shapes" opacity="0.5">
+      <ellipse id="Shape-Purple" cx="1536" cy="270" rx="288" ry="189" fill="url(#purple-gradient)" filter="url(#blur-100)" opacity="0.4"/>
+      <ellipse id="Shape-Blue" cx="1632" cy="810" rx="269" ry="173" fill="url(#blue-gradient)" filter="url(#blur-100)" opacity="0.35"/>
+    </g>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 3: PORTRAITS
+       Note: Replace these placeholders with actual images in Figma
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="Portraits">
+    <!-- LEFT: Design Portrait -->
+    <g id="Portrait-Design-Left">
+      <rect x="192" y="270" width="320" height="540" rx="8" fill="url(#portrait-pattern)" stroke="#ff6b5b" stroke-width="2" stroke-opacity="0.3"/>
+      <text x="352" y="540" text-anchor="middle" fill="#ff6b5b" font-family="Inter, sans-serif" font-size="14" font-weight="500" opacity="0.6">
+        DESIGN
+      </text>
+      <text x="352" y="560" text-anchor="middle" fill="#ff6b5b" font-family="Inter, sans-serif" font-size="11" opacity="0.4">
+        portrait-design-left.png
+      </text>
+      <!-- Warm filter indicator -->
+      <rect x="192" y="270" width="320" height="540" rx="8" fill="#ff6b5b" opacity="0.05"/>
+    </g>
+    
+    <!-- CENTER: Main B&W Portrait -->
+    <g id="Portrait-Center-Main">
+      <rect x="710" y="165" width="500" height="750" rx="8" fill="url(#portrait-pattern)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.2"/>
+      <text x="960" y="540" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="16" font-weight="600" opacity="0.5">
+        CENTER
+      </text>
+      <text x="960" y="565" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="12" opacity="0.3">
+        portrait-base.png
+      </text>
+      <text x="960" y="585" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" opacity="0.25">
+        (B&W Filter)
+      </text>
+    </g>
+    
+    <!-- RIGHT: Tech Portrait -->
+    <g id="Portrait-Tech-Right">
+      <rect x="1408" y="270" width="320" height="540" rx="8" fill="url(#portrait-pattern)" stroke="#00ff88" stroke-width="2" stroke-opacity="0.3"/>
+      <text x="1568" y="540" text-anchor="middle" fill="#00ff88" font-family="Inter, sans-serif" font-size="14" font-weight="500" opacity="0.6">
+        TECH
+      </text>
+      <text x="1568" y="560" text-anchor="middle" fill="#00ff88" font-family="Inter, sans-serif" font-size="11" opacity="0.4">
+        portrait-tech-right.png
+      </text>
+      <!-- Tech filter indicator -->
+      <rect x="1408" y="270" width="320" height="540" rx="8" fill="#00ff88" opacity="0.03"/>
+      
+      <!-- Circuit pattern overlay -->
+      <g id="Circuit-Overlay" opacity="0.5">
+        <path d="M1468 270 C1468 350, 1448 390, 1448 470 C1448 550, 1488 590, 1468 670" stroke="#00ff88" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M1528 270 C1528 370, 1548 420, 1528 520 C1508 620, 1548 680, 1528 750" stroke="#00ff88" stroke-width="1" fill="none" opacity="0.3"/>
+        <path d="M1588 270 C1608 320, 1588 370, 1608 450 C1628 530, 1588 590, 1608 670" stroke="#00ff88" stroke-width="1" fill="none" opacity="0.4"/>
+        <circle cx="1468" cy="470" r="3" fill="#00ff88" opacity="0.7"/>
+        <circle cx="1528" cy="520" r="2.5" fill="#00ff88" opacity="0.6"/>
+        <circle cx="1608" cy="450" r="2" fill="#00ff88" opacity="0.5"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 4: TYPOGRAPHY
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="Typography">
+    <!-- Design label (left) -->
+    <g id="Design-Label">
+      <text x="120" y="864" fill="#ff6b5b" font-family="Inter, sans-serif" font-size="28" font-weight="600" letter-spacing="0.15em">
+        <tspan x="120" dy="0">CREATIVE</tspan>
+        <tspan x="120" dy="40">DESIGNER</tspan>
+      </text>
+    </g>
+    
+    <!-- Center headline -->
+    <g id="Center-Headline">
+      <text x="960" y="480" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-weight="800" opacity="0.15">
+        <tspan x="920" font-size="140" dy="0">TECH &</tspan>
+        <tspan x="1000" font-size="140" dy="110">DESIGN</tspan>
+      </text>
+    </g>
+    
+    <!-- Subline -->
+    <g id="Subline">
+      <text x="960" y="650" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="18" font-weight="400" letter-spacing="0.2em" opacity="0.6">
+        Where systems meet emotion
+      </text>
+    </g>
+    
+    <!-- Tech label (right) -->
+    <g id="Tech-Label">
+      <text x="1800" y="864" text-anchor="end" fill="#00ff88" font-family="Inter, sans-serif" font-size="28" font-weight="600" letter-spacing="0.15em">
+        <tspan x="1800" dy="0">FULL STACK</tspan>
+        <tspan x="1800" dy="40">DEVELOPER</tspan>
+      </text>
+    </g>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 5: NAVIGATION
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="Navigation">
+    <!-- Sidebar background -->
+    <rect id="Sidebar-BG" x="0" y="0" width="80" height="1080" fill="#000000" opacity="0.5"/>
+    
+    <!-- Logo -->
+    <g id="Logo">
+      <text x="40" y="50" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="20" font-weight="700">
+        MP.
+      </text>
+    </g>
+    
+    <!-- Nav links (vertical text) -->
+    <g id="Nav-Links">
+      <g id="Nav-Home" transform="translate(40, 400)">
+        <text transform="rotate(-90)" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="500" letter-spacing="0.15em">
+          HOME
+        </text>
+        <!-- Active indicator -->
+        <rect x="-12" y="-8" width="3" height="16" rx="1.5" fill="#00ff88"/>
+      </g>
+      <g id="Nav-About" transform="translate(40, 480)">
+        <text transform="rotate(-90)" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="500" letter-spacing="0.15em" opacity="0.6">
+          ABOUT
+        </text>
+      </g>
+      <g id="Nav-Work" transform="translate(40, 560)">
+        <text transform="rotate(-90)" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="500" letter-spacing="0.15em" opacity="0.6">
+          WORK
+        </text>
+      </g>
+      <g id="Nav-Contact" transform="translate(40, 650)">
+        <text transform="rotate(-90)" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="500" letter-spacing="0.15em" opacity="0.6">
+          CONTACT
+        </text>
+      </g>
+    </g>
+    
+    <!-- Nav social icons -->
+    <g id="Nav-Social">
+      <g id="Social-Be" transform="translate(24, 950)">
+        <rect width="32" height="32" rx="8" fill="none" stroke="#ffffff" stroke-opacity="0.15"/>
+        <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600" opacity="0.6">Be</text>
+      </g>
+      <g id="Social-Dr" transform="translate(24, 990)">
+        <rect width="32" height="32" rx="8" fill="none" stroke="#ffffff" stroke-opacity="0.15"/>
+        <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600" opacity="0.6">Dr</text>
+      </g>
+      <g id="Social-In" transform="translate(24, 1030)">
+        <rect width="32" height="32" rx="8" fill="none" stroke="#ffffff" stroke-opacity="0.15"/>
+        <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600" opacity="0.6">In</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 6: SOCIAL LINKS (right side)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="Social-Right">
+    <g transform="translate(1880, 480)">
+      <circle r="20" fill="none" stroke="#ffffff" stroke-opacity="0.3"/>
+      <text y="5" text-anchor="middle" fill="#ffffff" font-size="16" opacity="0.6">○</text>
+    </g>
+    <g transform="translate(1880, 540)">
+      <circle r="20" fill="none" stroke="#ffffff" stroke-opacity="0.3"/>
+      <text y="5" text-anchor="middle" fill="#ffffff" font-size="16" opacity="0.6">◎</text>
+    </g>
+    <g transform="translate(1880, 600)">
+      <circle r="20" fill="none" stroke="#ffffff" stroke-opacity="0.3"/>
+      <text y="5" text-anchor="middle" fill="#ffffff" font-size="16" opacity="0.6">▢</text>
+    </g>
+    <!-- Vertical line -->
+    <line id="Social-Line" x1="1880" y1="640" x2="1880" y2="700" stroke="#ffffff" stroke-opacity="0.2"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 7: UI ELEMENTS
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="UI">
+    <!-- Custom cursor (示例位置) -->
+    <g id="Cursor" transform="translate(800, 400)">
+      <circle r="10" fill="none" stroke="#ffffff" stroke-width="2" stroke-opacity="0.6"/>
+      <circle r="3" fill="#ffffff"/>
+    </g>
+    
+    <!-- Footer hint -->
+    <g id="Footer-Hint">
+      <text x="960" y="1050" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="12" font-weight="400" letter-spacing="0.1em" text-transform="uppercase" opacity="0.35">
+        Move left to explore Design · Move right to explore Technology
+      </text>
+    </g>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       LAYER 8: HORIZONTAL ANIMATION GUIDES
+       (Visual guides for the horizontal scroll concept)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <g id="Animation-Guides" opacity="0.15">
+    <!-- Center zone indicator -->
+    <rect x="672" y="0" width="576" height="1080" fill="none" stroke="#ffffff" stroke-dasharray="8 4" stroke-opacity="0.2"/>
+    <text x="960" y="30" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" opacity="0.4">NEUTRAL ZONE (35%-65%)</text>
+    
+    <!-- Left zone indicator -->
+    <rect x="0" y="0" width="672" height="1080" fill="none" stroke="#ff6b5b" stroke-dasharray="8 4" stroke-opacity="0.2"/>
+    <text x="336" y="30" text-anchor="middle" fill="#ff6b5b" font-family="Inter, sans-serif" font-size="10" opacity="0.4">DESIGN ZONE (0%-35%)</text>
+    
+    <!-- Right zone indicator -->
+    <rect x="1248" y="0" width="672" height="1080" fill="none" stroke="#00ff88" stroke-dasharray="8 4" stroke-opacity="0.2"/>
+    <text x="1584" y="30" text-anchor="middle" fill="#00ff88" font-family="Inter, sans-serif" font-size="10" opacity="0.4">TECH ZONE (65%-100%)</text>
+    
+    <!-- Horizontal scroll arrow indicators -->
+    <g id="Scroll-Arrows" transform="translate(960, 980)">
+      <path d="M-60 0 L-30 0 M-45 -10 L-60 0 L-45 10" stroke="#ff6b5b" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M60 0 L30 0 M45 -10 L60 0 L45 10" stroke="#00ff88" stroke-width="2" fill="none" opacity="0.5"/>
+    </g>
+  </g>
+</svg>

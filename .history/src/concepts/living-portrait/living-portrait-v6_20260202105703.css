@@ -1,0 +1,452 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * LIVING PORTRAIT V6 — Akaru-style Horizontal + Vertical Scroll
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6 {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0c;
+  overflow: hidden;
+  cursor: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BACKGROUND
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.lpv6-bg__warm {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 20% 50%,
+    rgba(255, 107, 91, 0.3) 0%,
+    transparent 70%
+  );
+}
+
+.lpv6-bg__cool {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 80% 50%,
+    rgba(0, 255, 136, 0.25) 0%,
+    transparent 70%
+  );
+}
+
+.lpv6-bg__noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE WORLD — Moves both horizontally AND vertically
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-world {
+  position: absolute;
+  top: 0;
+  left: -300vw; /* Center (index 3) visible when x=0 */
+  width: 700vw;
+  height: 500vh; /* Tall for vertical project scrolling */
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AREA SECTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-area {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0 8vw;
+  box-sizing: border-box;
+}
+
+/* Area header - visible at top of viewport */
+.lpv6-area__header {
+  position: relative;
+  padding-top: 15vh;
+  padding-bottom: 5vh;
+  text-align: center;
+}
+
+.lpv6-area--design .lpv6-area__header {
+  text-align: right;
+}
+
+.lpv6-area--tech .lpv6-area__header {
+  text-align: left;
+}
+
+.lpv6-area__category {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--area-color);
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.lpv6-area__name {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.lpv6-area__desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 1.5rem 0 0;
+  max-width: 400px;
+}
+
+.lpv6-area--design .lpv6-area__desc {
+  margin-left: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CENTER CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 2rem;
+}
+
+.lpv6-center-title {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 0.15em;
+}
+
+.lpv6-center-title__design {
+  color: #ff6b5b;
+}
+
+.lpv6-center-title__plus {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 200;
+}
+
+.lpv6-center-title__tech {
+  color: #00ff88;
+}
+
+.lpv6-center-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AREA CONTENT — Layout for non-center areas
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-area__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 8vh 8vw;
+}
+
+.lpv6-area--design .lpv6-area__content {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.lpv6-area--tech .lpv6-area__content {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROJECTS — Inline list of projects
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-area__projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  max-width: 450px;
+}
+
+.lpv6-project-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lpv6-project-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  border-radius: 8px;
+}
+
+.lpv6-project-item--design {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.lpv6-project-item__number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--area-color, #888);
+  opacity: 0.6;
+  min-width: 2rem;
+}
+
+.lpv6-project-item__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.lpv6-project-item__name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.lpv6-project-item__desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.lpv6-project--design .lpv6-project__index {
+  right: 0;
+}
+
+.lpv6-project--tech .lpv6-project__index {
+  left: 0;
+}
+
+.lpv6-project__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lpv6-project--design .lpv6-project__content {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.lpv6-project__name {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.lpv6-project__desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  max-width: 380px;
+  margin: 0;
+}
+
+.lpv6-project__visual {
+  aspect-ratio: 4/3;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lpv6-project__placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 60%
+  );
+}
+
+.lpv6-project__accent {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--project-color);
+  transform-origin: center;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CURSOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+}
+
+.lpv6-cursor__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  transition: background-color 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AREA INDICATOR — Horizontal dots (top)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-area-indicator {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  z-index: 100;
+}
+
+.lpv6-area-indicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROJECT INDICATOR — Vertical dots (right side)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-project-indicator {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+}
+
+.lpv6-project-indicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLL HINT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv6-scroll-hint {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  z-index: 100;
+}
+
+.lpv6-scroll-hint span:first-child {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .lpv6-project {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .lpv6-project--design {
+    direction: ltr;
+  }
+  
+  .lpv6-project--design .lpv6-project__content {
+    text-align: left;
+    align-items: flex-start;
+  }
+  
+  .lpv6-project__index {
+    font-size: 4rem;
+    left: 0 !important;
+    right: auto !important;
+  }
+  
+  .lpv6-project__visual {
+    max-width: 100%;
+  }
+  
+  .lpv6-area-indicator {
+    top: 20px;
+    gap: 10px;
+  }
+  
+  .lpv6-project-indicator {
+    right: 20px;
+  }
+}

@@ -1,0 +1,491 @@
+/**
+ * SplitPortraitHero Styles — T-Shaped 3D Reveal
+ * 
+ * The portrait starts as a thin horizontal line (edge-on view)
+ * and rotates to reveal the full face when mouse moves left/right
+ */
+
+.split-portrait-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Transparent to show identity background layer */
+  background: transparent;
+  cursor: none;
+  perspective: 1500px;
+  perspective-origin: center center;
+}
+
+/* Panning container - translates horizontally based on mouse position */
+.hero-pan-container {
+  position: absolute;
+  inset: 0;
+  width: 150%; /* Wider than viewport to allow panning */
+  left: -25%; /* Center the wider container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IDENTITY PANELS (Left & Right)
+   ═══════════════════════════════════════════════════════════ */
+.identity-panel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+  max-width: 400px;
+  padding: 2rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.identity-panel--design {
+  left: 5%;
+  text-align: left;
+}
+
+.identity-panel--tech {
+  right: 5%;
+  text-align: right;
+}
+
+.identity-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.identity-title--design {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-style: italic;
+  color: var(--akaru-design-accent, #c4703a);
+}
+
+.identity-title--tech {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 200;
+  color: var(--akaru-tech-accent, #3a7cc4);
+  letter-spacing: -0.04em;
+}
+
+.identity-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(250, 250, 250, 0.7);
+  max-width: 300px;
+  margin: 0;
+}
+
+.identity-panel--tech .identity-description {
+  margin-left: auto;
+}
+
+/* Code snippets on tech side */
+.code-snippets {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--akaru-tech-accent, #3a7cc4);
+}
+
+.code-line {
+  background: rgba(58, 124, 196, 0.08);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(58, 124, 196, 0.15);
+}
+
+.code-line--highlight {
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+}
+
+/* Click hints on identity panels */
+.click-hint {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.8;
+  animation: pulse-hint 2s ease-in-out infinite;
+}
+
+.click-hint--design {
+  color: var(--akaru-design-accent, #c4703a);
+}
+
+.click-hint--tech {
+  color: var(--akaru-tech-accent, #3a7cc4);
+}
+
+@keyframes pulse-hint {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION TRACK — Horizontal Position Indicator
+   ═══════════════════════════════════════════════════════════ */
+.nav-track-container {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 700px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.nav-track {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.nav-track__label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.nav-track__label--left {
+  color: var(--akaru-design-accent, #c4703a);
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+}
+
+.nav-track__label--right {
+  color: var(--akaru-tech-accent, #3a7cc4);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.nav-track__line {
+  flex: 1;
+  position: relative;
+  height: 4px;
+  /* SYNC gradient with splash-loader.css .splash-t-horizontal for seamless handoff */
+  background: linear-gradient(
+    90deg,
+    var(--akaru-design-accent, #c4703a) 0%,
+    rgba(196, 112, 58, 0.6) 20%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(58, 124, 196, 0.6) 80%,
+    var(--akaru-tech-accent, #3a7cc4) 100%
+  );
+  border-radius: 2px;
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.3),
+    0 0 60px rgba(255, 255, 255, 0.15),
+    -100px 0 80px rgba(196, 112, 58, 0.2),
+    100px 0 80px rgba(58, 124, 196, 0.2);
+}
+
+.nav-track__indicator {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+/* ONE continuous vertical line - the T stem + portrait edge combined */
+/* Starts from bottom of horizontal line and goes down to portrait area */
+/* SYNC with .splash-t-vertical in splash-loader.css */
+.t-vertical-line {
+  position: absolute;
+  top: 4px; /* Start right at bottom of nav-track (which is in a flex container) */
+  left: 50%;
+  width: 4px;
+  height: calc(85vh - 15%); /* From nav-track (at 15%) down most of viewport */
+  max-height: 600px;  /* SYNC with splash */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.8) 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+/* T-shaped Professional tagline - hidden, the edge line is the visual now */
+.t-tagline {
+  display: none;
+}
+
+/* Legacy T-shape container - keep for backwards compatibility */
+.t-shape-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 600px;
+  height: 70vh;
+  max-height: 800px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Legacy horizontal line - hidden now, replaced by nav-track */
+.t-horizontal-line {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3D PORTRAIT CONTAINER
+   ═══════════════════════════════════════════════════════════ */
+.portrait-3d-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 80vh;
+  max-height: 700px;
+  z-index: 2;
+  transform-style: preserve-3d;
+}
+
+/* Each portrait face */
+.portrait-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.portrait-face img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+}
+
+/* Design face - warm glow */
+.portrait-face--design {
+  transform-origin: center;
+  background: rgba(249, 228, 207, 0.94);
+  border-radius: 8px;
+}
+
+.portrait-face--design img {
+  filter: 
+    drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 60px rgba(196, 112, 58, 0.2));
+}
+
+/* Split face - neutral (center/default state) */
+.portrait-face--split {
+  transform-origin: center;
+  background: rgba(230, 230, 230, 0.94);
+  border-radius: 8px;
+}
+
+.portrait-face--split img {
+  filter: 
+    drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 40px rgba(128, 128, 128, 0.15));
+}
+
+/* Tech face - cool glow */
+.portrait-face--tech {
+  transform-origin: center;
+  background: rgba(207, 228, 249, 0.94);
+  border-radius: 8px;
+}
+
+.portrait-face--tech img {
+  filter: 
+    drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 60px rgba(58, 124, 196, 0.2));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL INDICATOR
+   ═══════════════════════════════════════════════════════════ */
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(250, 250, 250, 0.6);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  z-index: 20;
+}
+
+.scroll-arrow {
+  font-size: 1.2rem;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EXPLORATION HINT
+   ═══════════════════════════════════════════════════════════ */
+.explore-hint {
+  position: absolute;
+  bottom: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(250, 250, 250, 0.5);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.hint-icon {
+  font-size: 1rem;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+.hint-icon:first-child {
+  animation-delay: 0s;
+  --hint-dir: -8px;
+}
+
+.hint-icon:last-child {
+  animation-delay: 0.5s;
+  --hint-dir: 8px;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.3; transform: translateX(0); }
+  50% { opacity: 0.8; transform: translateX(var(--hint-dir, 5px)); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .identity-panel {
+    width: 25%;
+    padding: 1.5rem;
+  }
+  
+  .identity-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  
+  .code-snippets {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .identity-panel {
+    position: absolute;
+    top: 10%;
+    transform: none;
+    width: 40%;
+    padding: 1rem;
+  }
+  
+  .identity-panel--design {
+    left: 2%;
+  }
+  
+  .identity-panel--tech {
+    right: 2%;
+  }
+  
+  .identity-title {
+    font-size: 1.5rem;
+  }
+  
+  .identity-description {
+    display: none;
+  }
+  
+  .portrait-3d-container {
+    height: 60vh;
+    max-height: 500px;
+  }
+  
+  .t-shape-container {
+    height: 50vh;
+  }
+  
+  .explore-hint {
+    bottom: 25%;
+    font-size: 0.65rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .portrait-face {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+  }
+  
+  .t-horizontal-line,
+  .t-vertical-line {
+    transition: none !important;
+  }
+  
+  .scroll-arrow,
+  .hint-icon {
+    animation: none !important;
+  }
+}

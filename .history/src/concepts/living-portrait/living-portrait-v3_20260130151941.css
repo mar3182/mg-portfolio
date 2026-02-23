@@ -1,0 +1,753 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * LIVING PORTRAIT V3 — Explorative T-Navigation Styles
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Design System (V2 Typography):
+ * - Design zone: #ff8c42 (warm orange), Cormorant Garamond serif
+ * - Tech zone: #1be7ff (cyan)
+ * - Self zone: #ffffff (neutral)
+ * 
+ * The "+" acts as a LOUPE revealing scattered items on hover
+ * Horizontal: Projects (Design left, Tech right)
+ * Vertical: Personal sections (Who am I, Experience, Mindset, Contact)
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FONT IMPORTS (V2 Style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.living-portrait-v3 {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #050505;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  cursor: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BACKGROUND LAYERS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.lpv3-background__warm {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 100% 80% at 20% 50%, rgba(255, 140, 66, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 10% 70%, rgba(255, 100, 50, 0.2) 0%, transparent 40%);
+}
+
+.lpv3-background__cool {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 100% 80% at 80% 50%, rgba(27, 231, 255, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 90% 30%, rgba(139, 92, 246, 0.2) 0%, transparent 40%);
+}
+
+.lpv3-background__vignette {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 8%, transparent 92%, rgba(0, 0, 0, 0.4) 100%),
+    radial-gradient(ellipse 90% 80% at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   EXPLORATIVE NAVIGATION — The loupe system
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-explore {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Horizontal axis line */
+.lpv3-explore__h-line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  transform: translateY(-50%);
+  display: flex;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.lpv3-explore__h-line-design {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 140, 66, 0.4), transparent);
+}
+
+.lpv3-explore__h-line-tech {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(27, 231, 255, 0.4));
+}
+
+/* Vertical axis line */
+.lpv3-explore__v-line {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 30%,
+    rgba(255, 255, 255, 0.3) 70%,
+    transparent 100%
+  );
+}
+
+/* The "+" loupe cursor */
+.lpv3-explore__loupe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.lpv3-explore__plus {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 200;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 
+    0 0 30px currentColor,
+    0 0 60px currentColor;
+  z-index: 2;
+}
+
+.lpv3-explore__loupe-ring {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: loupe-pulse 3s ease-in-out infinite;
+}
+
+@keyframes loupe-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCATTERED ITEMS — Projects along horizontal axis
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-scatter-item {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.lpv3-scatter-item__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.lpv3-scatter-item--design .lpv3-scatter-item__dot {
+  background: #ff8c42;
+  box-shadow: 0 0 10px rgba(255, 140, 66, 0.5);
+}
+
+.lpv3-scatter-item--tech .lpv3-scatter-item__dot {
+  background: #1be7ff;
+  box-shadow: 0 0 10px rgba(27, 231, 255, 0.5);
+}
+
+.lpv3-scatter-item__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.lpv3-scatter-item__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 400;
+  color: #fff;
+}
+
+.lpv3-scatter-item--design .lpv3-scatter-item__title {
+  color: #ff8c42;
+}
+
+.lpv3-scatter-item--tech .lpv3-scatter-item__title {
+  color: #1be7ff;
+}
+
+.lpv3-scatter-item__category {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Hover state */
+.lpv3-scatter-item:hover .lpv3-scatter-item__dot {
+  transform: scale(1.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VERTICAL ITEMS — Personal sections along vertical axis
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-vertical-item {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.lpv3-vertical-item__icon {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.lpv3-vertical-item__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.lpv3-vertical-item:hover .lpv3-vertical-item__icon {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATED TITLE — "Design + Tech" splits as you explore
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-animated-title {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.lpv3-animated-title__word {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 200;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  text-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
+}
+
+.lpv3-animated-title__word--design {
+  color: #ff8c42;
+  text-shadow: 
+    0 0 40px rgba(255, 140, 66, 0.4),
+    0 0 80px rgba(255, 140, 66, 0.2);
+}
+
+.lpv3-animated-title__word--tech {
+  color: #1be7ff;
+  text-shadow: 
+    0 0 40px rgba(27, 231, 255, 0.4),
+    0 0 80px rgba(27, 231, 255, 0.2);
+}
+
+.lpv3-animated-title__plus {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.5),
+    0 0 60px rgba(255, 255, 255, 0.3);
+  will-change: transform, opacity;
+}
+
+.lpv3-animated-title__subtitle {
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAIN CONTENT AREA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PORTRAIT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-portrait {
+  position: relative;
+  width: min(50vh, 400px);
+  height: min(65vh, 520px);
+  will-change: transform;
+}
+
+.lpv3-portrait__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lpv3-portrait__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.lpv3-portrait__image--base {
+  z-index: 1;
+}
+
+.lpv3-portrait__image--design {
+  z-index: 2;
+}
+
+.lpv3-portrait__image--tech {
+  z-index: 2;
+}
+
+.lpv3-portrait__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(ellipse 50% 50% at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPOGRAPHY — V2 STYLE (Cormorant Garamond)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-typography {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 15;
+}
+
+.lpv3-typography__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+}
+
+.lpv3-typography__title .title-line {
+  display: block;
+}
+
+.lpv3-typography__title .title-ampersand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.6em;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0;
+}
+
+.lpv3-typography__subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ITEM DETAIL OVERLAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lpv3-detail {
+  position: relative;
+  width: min(600px, 90vw);
+  max-height: 80vh;
+  padding: 3rem;
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 24px;
+  cursor: default;
+  overflow: hidden;
+}
+
+.lpv3-detail--design {
+  border: 1px solid rgba(255, 140, 66, 0.3);
+  box-shadow: 
+    0 0 60px rgba(255, 140, 66, 0.2),
+    inset 0 0 60px rgba(255, 140, 66, 0.05);
+}
+
+.lpv3-detail--tech {
+  border: 1px solid rgba(27, 231, 255, 0.3);
+  box-shadow: 
+    0 0 60px rgba(27, 231, 255, 0.2),
+    inset 0 0 60px rgba(27, 231, 255, 0.05);
+}
+
+.lpv3-detail--personal {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 0 60px rgba(255, 255, 255, 0.1),
+    inset 0 0 60px rgba(255, 255, 255, 0.02);
+}
+
+.lpv3-detail__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 2rem;
+  font-weight: 200;
+  line-height: 1;
+}
+
+.lpv3-detail__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lpv3-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lpv3-detail__icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.lpv3-detail__category {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.lpv3-detail__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.lpv3-detail__placeholder {
+  margin: 2rem 0;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+.lpv3-detail__cta {
+  align-self: flex-start;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 100px;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lpv3-detail__cta:hover {
+  filter: brightness(1.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lpv3-footer {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 5;
+}
+
+.lpv3-footer p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE: TABLET
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .lpv3-portrait {
+    width: min(45vh, 350px);
+    height: min(58vh, 450px);
+  }
+  
+  .lpv3-explore__loupe-ring {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE: MOBILE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .living-portrait-v3 {
+    cursor: auto;
+  }
+  
+  .lpv3-portrait {
+    width: min(70vw, 300px);
+    height: min(50vh, 380px);
+  }
+  
+  .lpv3-typography {
+    bottom: 20%;
+  }
+  
+  .lpv3-explore__loupe {
+    display: none;
+  }
+  
+  .lpv3-scatter-item,
+  .lpv3-vertical-item {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+  }
+  
+  .lpv3-scatter-item__label {
+    opacity: 1 !important;
+  }
+  
+  .lpv3-vertical-item__title {
+    opacity: 1 !important;
+  }
+  
+  .lpv3-footer {
+    display: none;
+  }
+  
+  .lpv3-detail {
+    padding: 2rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ORGANIC WORLD ADJUSTMENTS — CINEMATIC FULL-BLEED
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.living-portrait-v3 .organic-world {
+  position: fixed;
+  top: -10%;
+  left: -30%;
+  width: 130%;
+  height: 120%;
+  z-index: 2;
+  mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 50%,
+    rgba(0, 0, 0, 0.6) 70%,
+    transparent 90%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 50%,
+    rgba(0, 0, 0, 0.6) 70%,
+    transparent 90%
+  );
+}
+
+.living-portrait-v3 .organic-world__video-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.living-portrait-v3 .organic-world__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.85;
+  filter: saturate(1.2) contrast(1.1);
+}
+
+.living-portrait-v3 .matrix-world {
+  position: fixed;
+  top: -10%;
+  right: -30%;
+  width: 130%;
+  height: 120%;
+  z-index: 2;
+  mask-image: linear-gradient(
+    to left,
+    black 0%,
+    black 50%,
+    rgba(0, 0, 0, 0.6) 70%,
+    transparent 90%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    black 0%,
+    black 50%,
+    rgba(0, 0, 0, 0.6) 70%,
+    transparent 90%
+  );
+}
+
+.living-portrait-v3 .matrix-world__video-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.living-portrait-v3 .matrix-world__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.85;
+  filter: saturate(1.1) contrast(1.15) brightness(0.95);
+}

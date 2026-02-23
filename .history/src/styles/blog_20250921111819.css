@@ -1,0 +1,29 @@
+/* Blog page layout helpers */
+.blog-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  column-gap: 5rem; /* 80px */
+  row-gap: 3.5rem; /* 56px */
+}
+
+@media (min-width: 1024px) {
+  .blog-grid { column-gap: 6rem; row-gap: 4.5rem; }
+}
+
+@media (min-width: 1280px) {
+  .blog-grid { column-gap: 8rem; row-gap: 6rem; }
+}
+
+
+@media (max-width: 360px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}

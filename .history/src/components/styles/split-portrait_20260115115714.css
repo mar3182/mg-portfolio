@@ -1,0 +1,319 @@
+/**
+ * SplitPortraitHero Styles
+ * 
+ * Adham Dannaway-inspired split-face hero with mouse-reactive portrait
+ */
+
+.split-portrait-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--akaru-bg, #0d0d0d);
+  cursor: none;
+}
+
+/* Identity panels on each side */
+.identity-panel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+  max-width: 400px;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.identity-panel--design {
+  left: 5%;
+  text-align: left;
+}
+
+.identity-panel--tech {
+  right: 5%;
+  text-align: right;
+}
+
+/* Identity titles */
+.identity-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.identity-title--design {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-style: italic;
+  color: var(--akaru-text, #fafafa);
+}
+
+.identity-title--tech {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 200;
+  color: var(--akaru-text, #fafafa);
+  letter-spacing: -0.04em;
+}
+
+.identity-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(250, 250, 250, 0.7);
+  max-width: 300px;
+  margin: 0;
+}
+
+.identity-panel--tech .identity-description {
+  margin-left: auto;
+}
+
+/* Code snippets on tech side */
+.code-snippets {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--akaru-tech-accent, #3a7cc4);
+}
+
+.code-line {
+  background: rgba(58, 124, 196, 0.08);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(58, 124, 196, 0.15);
+}
+
+.code-line--highlight {
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  letter-spacing: 0.05em;
+}
+
+/* Portrait Container */
+.portrait-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 80vh;
+  max-height: 700px;
+  z-index: 1;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Portrait layers */
+.portrait-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.portrait-layer img {
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Base layer - always visible */
+.portrait-layer--base {
+  z-index: 1;
+}
+
+/* Design layer - artistic treatment */
+.portrait-layer--design {
+  z-index: 2;
+}
+
+/* Tech layer - digital treatment */
+.portrait-layer--tech {
+  z-index: 3;
+}
+
+/* Center divider that follows mouse */
+.portrait-divider {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.5) 80%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(250, 250, 250, 0.6);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  z-index: 5;
+}
+
+.scroll-arrow {
+  font-size: 1.2rem;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Exploration hint */
+.explore-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(250, 250, 250, 0.5);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hint-icon {
+  font-size: 1rem;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+.hint-icon:first-child {
+  animation-delay: 0s;
+}
+
+.hint-icon:last-child {
+  animation-delay: 0.5s;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.3; transform: translateX(0); }
+  50% { opacity: 0.8; transform: translateX(var(--hint-dir, 5px)); }
+}
+
+.hint-icon:first-child {
+  --hint-dir: -8px;
+}
+
+.hint-icon:last-child {
+  --hint-dir: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .identity-panel {
+    width: 25%;
+    padding: 1.5rem;
+  }
+  
+  .identity-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  
+  .identity-description {
+    font-size: 0.85rem;
+  }
+  
+  .code-snippets {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .split-portrait-hero {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  
+  .identity-panel {
+    position: relative;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .identity-panel--design {
+    left: auto;
+    order: 1;
+  }
+  
+  .identity-panel--tech {
+    right: auto;
+    order: 3;
+  }
+  
+  .identity-panel--tech .identity-description {
+    margin-left: 0;
+  }
+  
+  .portrait-container {
+    order: 2;
+    height: 50vh;
+    max-height: 400px;
+    margin: 2rem 0;
+  }
+  
+  .identity-title {
+    font-size: 1.8rem;
+  }
+  
+  .identity-description {
+    max-width: none;
+  }
+  
+  .explore-hint {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .portrait-container {
+    transform: none !important;
+  }
+  
+  .scroll-arrow,
+  .hint-icon {
+    animation: none !important;
+  }
+}

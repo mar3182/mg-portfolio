@@ -1,0 +1,185 @@
+/**
+ * ProjectParticles Styles
+ * 
+ * Floating particles revealed by mouse cursor "explore circle"
+ */
+
+.project-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particles-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+}
+
+.particles-side--design {
+  left: 0;
+}
+
+.particles-side--tech {
+  right: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARTICLE ITEM
+   ═══════════════════════════════════════════════════════════ */
+.particle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.particle__link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(13, 13, 13, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.particle__link:hover {
+  background: rgba(13, 13, 13, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.particle__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.particle__title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Design particles - orange accent */
+.particle--design .particle__dot {
+  background: var(--akaru-design-accent, #c4703a);
+  box-shadow: 0 0 12px rgba(196, 112, 58, 0.6);
+}
+
+.particle--design .particle__title {
+  color: var(--akaru-design-accent, #c4703a);
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-style: italic;
+}
+
+.particle--design .particle__link:hover {
+  border-color: rgba(196, 112, 58, 0.4);
+  box-shadow: 0 4px 20px rgba(196, 112, 58, 0.2);
+}
+
+/* Tech particles - blue accent */
+.particle--tech .particle__dot {
+  background: var(--akaru-tech-accent, #3a7cc4);
+  box-shadow: 0 0 12px rgba(58, 124, 196, 0.6);
+}
+
+.particle--tech .particle__title {
+  color: var(--akaru-tech-accent, #3a7cc4);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.particle--tech .particle__link:hover {
+  border-color: rgba(58, 124, 196, 0.4);
+  box-shadow: 0 4px 20px rgba(58, 124, 196, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARTICLE SIZES
+   ═══════════════════════════════════════════════════════════ */
+.particle--sm .particle__dot {
+  width: 6px;
+  height: 6px;
+}
+
+.particle--sm .particle__title {
+  font-size: 0.65rem;
+}
+
+.particle--md .particle__dot {
+  width: 8px;
+  height: 8px;
+}
+
+.particle--md .particle__title {
+  font-size: 0.75rem;
+}
+
+.particle--lg .particle__dot {
+  width: 10px;
+  height: 10px;
+}
+
+.particle--lg .particle__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FLOATING ANIMATION
+   ═══════════════════════════════════════════════════════════ */
+.particle {
+  animation: particle-float 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { animation-delay: 0s; }
+.particle:nth-child(2) { animation-delay: 1s; }
+.particle:nth-child(3) { animation-delay: 2s; }
+.particle:nth-child(4) { animation-delay: 3s; }
+.particle:nth-child(5) { animation-delay: 4s; }
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .particle__link {
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .particle__title {
+    font-size: 0.65rem;
+  }
+  
+  .particle--lg .particle__title {
+    font-size: 0.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none;
+  }
+}

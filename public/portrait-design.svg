@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="designGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c4703a;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#e8a060;stop-opacity:0.2" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background with design tint -->
+  <rect width="800" height="1000" fill="#0d0d0d"/>
+  <rect width="800" height="1000" fill="url(#designGrad)"/>
+  
+  <!-- Artistic paint splashes -->
+  <circle cx="200" cy="300" r="80" fill="#c4703a" opacity="0.6"/>
+  <circle cx="150" cy="450" r="60" fill="#e8a060" opacity="0.5"/>
+  <circle cx="280" cy="200" r="45" fill="#4ecdc4" opacity="0.4"/>
+  <circle cx="350" cy="400" r="70" fill="#ffe66d" opacity="0.5"/>
+  <circle cx="180" cy="600" r="55" fill="#ff6b6b" opacity="0.4"/>
+  
+  <!-- Paint drips -->
+  <path d="M 200 380 Q 195 450 210 520" stroke="#c4703a" stroke-width="15" fill="none" opacity="0.7" stroke-linecap="round"/>
+  <path d="M 280 245 Q 275 320 290 380" stroke="#4ecdc4" stroke-width="12" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <path d="M 160 510 Q 155 580 170 660" stroke="#ffe66d" stroke-width="10" fill="none" opacity="0.6" stroke-linecap="round"/>
+  
+  <!-- Brush strokes -->
+  <path d="M 100 700 Q 250 680 400 750" stroke="#c4703a" stroke-width="25" fill="none" opacity="0.6" stroke-linecap="round"/>
+  <path d="M 120 800 Q 280 770 450 820" stroke="#e8a060" stroke-width="18" fill="none" opacity="0.5" stroke-linecap="round"/>
+  
+  <!-- Silhouette with artistic treatment -->
+  <ellipse cx="400" cy="280" rx="140" ry="180" fill="#2a2a2a"/>
+  <ellipse cx="400" cy="580" rx="200" ry="300" fill="#2a2a2a"/>
+  
+  <!-- Artistic overlay on face -->
+  <ellipse cx="320" cy="300" rx="60" ry="80" fill="#c4703a" opacity="0.4"/>
+  <ellipse cx="380" cy="350" rx="40" ry="50" fill="#4ecdc4" opacity="0.3"/>
+  
+  <!-- Label -->
+  <text x="100" y="950" font-family="Playfair Display, serif" font-size="32" fill="#c4703a" font-style="italic">
+    designer
+  </text>
+</svg>

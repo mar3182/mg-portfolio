@@ -1,0 +1,155 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * IDENTITY TEXT STYLES
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Typography styles for identity-aware text components.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADING
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.identity-heading {
+  position: relative;
+  margin: 0;
+  /* Smooth transitions for non-animated properties */
+  transition: opacity 0.3s ease;
+}
+
+.identity-heading h1,
+.identity-heading h2,
+.identity-heading h3,
+.identity-heading h4,
+.identity-heading h5,
+.identity-heading h6 {
+  margin: 0;
+  font-family: var(--font-display, Georgia, serif);
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-shadow: inherit;
+  line-height: 1.1;
+}
+
+/* Size variants */
+.identity-heading--xs h1,
+.identity-heading--xs h2,
+.identity-heading--xs h3,
+.identity-heading--xs h4,
+.identity-heading--xs h5,
+.identity-heading--xs h6 {
+  font-size: var(--text-lg, 1.5rem);
+}
+
+.identity-heading--sm h1,
+.identity-heading--sm h2,
+.identity-heading--sm h3,
+.identity-heading--sm h4,
+.identity-heading--sm h5,
+.identity-heading--sm h6 {
+  font-size: var(--text-xl, 2rem);
+}
+
+.identity-heading--md h1,
+.identity-heading--md h2,
+.identity-heading--md h3,
+.identity-heading--md h4,
+.identity-heading--md h5,
+.identity-heading--md h6 {
+  font-size: var(--text-2xl, 2.5rem);
+}
+
+.identity-heading--lg h1,
+.identity-heading--lg h2,
+.identity-heading--lg h3,
+.identity-heading--lg h4,
+.identity-heading--lg h5,
+.identity-heading--lg h6 {
+  font-size: var(--text-3xl, 3rem);
+}
+
+.identity-heading--xl h1,
+.identity-heading--xl h2,
+.identity-heading--xl h3,
+.identity-heading--xl h4,
+.identity-heading--xl h5,
+.identity-heading--xl h6 {
+  font-size: var(--text-4xl, 4rem);
+}
+
+.identity-heading--hero h1,
+.identity-heading--hero h2 {
+  font-size: var(--text-hero, clamp(3rem, 10vw, 8rem));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PARAGRAPH
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.identity-paragraph {
+  margin: 0;
+  font-family: var(--font-body, sans-serif);
+  font-size: var(--text-base, 1rem);
+  max-width: 65ch;
+}
+
+.identity-paragraph--muted {
+  font-size: var(--text-sm, 0.875rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LABEL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.identity-label {
+  display: inline-block;
+  font-family: var(--font-body, sans-serif);
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.identity-label--default {
+  /* Uses motion-controlled styles from React component */
+  opacity: 1;
+}
+
+.identity-label--accent {
+  font-weight: 600;
+}
+
+.identity-label--subtle {
+  opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.identity-accent {
+  display: inline;
+  font-weight: 500;
+  /* Smooth color transitions */
+  transition: opacity 0.2s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .identity-heading--xl h1,
+  .identity-heading--xl h2,
+  .identity-heading--xl h3,
+  .identity-heading--xl h4,
+  .identity-heading--xl h5,
+  .identity-heading--xl h6 {
+    font-size: var(--text-3xl, 3rem);
+  }
+  
+  .identity-heading--hero h1,
+  .identity-heading--hero h2 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+}

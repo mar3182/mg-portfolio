@@ -1,0 +1,19 @@
+/* Blog page layout helpers */
+.blog-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 360px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}

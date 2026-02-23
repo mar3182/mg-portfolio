@@ -1,0 +1,453 @@
+/**
+ * LIVING PORTRAIT V6 — Akaru Fluid Style
+ * 
+ * NO static panels - full-screen fluid animations
+ * Elements expand and flow during transitions
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0a;
+}
+
+.akaru-fluid__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVIGATION — Minimal overlay elements
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid__nav {
+  position: fixed;
+  top: 40px;
+  right: 60px;
+  z-index: 100;
+  display: flex;
+  gap: 40px;
+}
+
+.akaru-fluid__nav a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.akaru-fluid__nav a:hover {
+  color: #fff;
+}
+
+.akaru-fluid__logo {
+  position: fixed;
+  top: 40px;
+  left: 60px;
+  z-index: 100;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.akaru-fluid__social {
+  position: fixed;
+  bottom: 40px;
+  left: 60px;
+  z-index: 100;
+  display: flex;
+  gap: 20px;
+}
+
+.akaru-fluid__social a {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.akaru-fluid__social a:hover {
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COUNTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid__counter {
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+  z-index: 100;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.akaru-fluid__counter-current {
+  font-size: 42px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.akaru-fluid__counter-sep {
+  font-size: 20px;
+  color: rgba(255,255,255,0.3);
+}
+
+.akaru-fluid__counter-total {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DOTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid__dots {
+  position: fixed;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.akaru-fluid__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot-color);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.akaru-fluid__dot--active {
+  transform: scale(1.4);
+}
+
+.akaru-fluid__dot:hover {
+  transform: scale(1.6);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLL INDICATOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid__scroll {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.akaru-fluid__scroll span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.4);
+}
+
+.akaru-fluid__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.3);
+  transform-origin: top;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SLIDE — Full screen fluid content
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid__slide {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 120px 100px;
+  gap: 60px;
+}
+
+/* Giant background number */
+.akaru-fluid__number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(300px, 45vw, 700px);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -20px;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LEFT CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid__left {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.akaru-fluid__category {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.akaru-fluid__title {
+  font-size: clamp(52px, 7vw, 100px);
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  line-height: 0.95;
+  letter-spacing: -3px;
+}
+
+.akaru-fluid__subtitle {
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.akaru-fluid__description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.6);
+  max-width: 450px;
+  margin-top: 16px;
+}
+
+.akaru-fluid__cta {
+  margin-top: 32px;
+}
+
+.akaru-fluid__button {
+  padding: 18px 40px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.akaru-fluid__button:hover {
+  background: currentColor;
+  color: #0a0a0a !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RIGHT CONTENT — Project showcase
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.akaru-fluid__right {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.akaru-fluid__project {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.akaru-fluid__project-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border: 1px solid;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.akaru-fluid__project-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.akaru-fluid__project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.akaru-fluid__project-year {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.akaru-fluid__project-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.akaru-fluid__project-detail {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+
+.akaru-fluid__project-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.akaru-fluid__project-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.akaru-fluid__project-dot.active {
+  transform: scale(1.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  .akaru-fluid__slide {
+    padding: 100px 60px;
+    gap: 40px;
+  }
+  
+  .akaru-fluid__nav {
+    right: 40px;
+    gap: 30px;
+  }
+  
+  .akaru-fluid__logo {
+    left: 40px;
+  }
+  
+  .akaru-fluid__social {
+    left: 40px;
+  }
+  
+  .akaru-fluid__counter {
+    right: 40px;
+  }
+  
+  .akaru-fluid__dots {
+    right: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .akaru-fluid__slide {
+    grid-template-columns: 1fr;
+    padding: 100px 40px;
+    gap: 40px;
+    align-content: center;
+  }
+  
+  .akaru-fluid__right {
+    display: none;
+  }
+  
+  .akaru-fluid__left {
+    max-width: 100%;
+  }
+  
+  .akaru-fluid__number {
+    font-size: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .akaru-fluid__nav {
+    display: none;
+  }
+  
+  .akaru-fluid__logo {
+    top: 24px;
+    left: 24px;
+    font-size: 16px;
+  }
+  
+  .akaru-fluid__social {
+    bottom: 24px;
+    left: 24px;
+  }
+  
+  .akaru-fluid__counter {
+    bottom: 24px;
+    right: 24px;
+  }
+  
+  .akaru-fluid__counter-current {
+    font-size: 28px;
+  }
+  
+  .akaru-fluid__dots {
+    right: 24px;
+  }
+  
+  .akaru-fluid__scroll {
+    display: none;
+  }
+  
+  .akaru-fluid__slide {
+    padding: 80px 24px;
+  }
+  
+  .akaru-fluid__title {
+    font-size: 40px;
+    letter-spacing: -1px;
+  }
+  
+  .akaru-fluid__number {
+    font-size: 150px;
+  }
+}

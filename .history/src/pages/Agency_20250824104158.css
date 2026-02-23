@@ -1,0 +1,14 @@
+.agency-section {
+  background: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.agency-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.agency-section p {
+  font-size: 1.2rem;
+  color: #555;
+}

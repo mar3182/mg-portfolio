@@ -1,0 +1,26 @@
+/**
+ * Identity Section Divider Styles
+ */
+
+.identity-section-divider {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.identity-section-divider--inverted {
+  transform: scaleY(-1);
+}
+
+.divider-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.divider-svg path {
+  transition: d 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}

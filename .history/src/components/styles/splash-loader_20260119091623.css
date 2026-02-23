@@ -1,0 +1,195 @@
+/**
+ * SplashLoader Styles
+ * 
+ * M|G animation where the "|" transforms into a T-shape
+ * Color trails blur from M (blue) and G (orange) into the horizontal line
+ */
+
+.splash-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.splash-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--akaru-bg, #0d0d0d);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LETTERS M | G
+   ═══════════════════════════════════════════════════════════ */
+.splash-logo {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.splash-letter {
+  font-size: clamp(5rem, 15vw, 10rem);
+  font-weight: 400;
+  line-height: 1;
+  will-change: transform, opacity, filter;
+}
+
+/* M - Sophisticated Serif for Design side (Orange) */
+.splash-letter--m {
+  font-family: var(--font-logo-serif, 'Cormorant Garamond', Georgia, serif);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--akaru-design-accent, #c4703a);
+  text-shadow: 0 0 60px rgba(196, 112, 58, 0.4);
+}
+
+/* G - Clean Tech Sans for Tech side (Blue) */
+.splash-letter--g {
+  font-family: var(--font-logo-tech, 'Space Grotesk', system-ui, sans-serif);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  color: var(--akaru-tech-accent, #3a7cc4);
+  text-shadow: 0 0 60px rgba(58, 124, 196, 0.4);
+}
+
+/* The "|" divider between M and G */
+.splash-divider-core {
+  width: 2px;
+  height: 4rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  transform-origin: center;
+  margin: 0 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   T-SHAPE - Born from the "|" divider
+   Starts at center (where M|G are) and moves up to final position
+   MUST match hero nav-track-container position for seamless handoff
+   ═══════════════════════════════════════════════════════════ */
+.splash-t-container {
+  position: absolute;
+  top: 15%;  /* SYNC with split-portrait.css .nav-track-container */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;  /* SYNC with split-portrait.css .nav-track-container */
+  max-width: 700px;  /* SYNC with split-portrait.css .nav-track-container */
+  height: 70vh;
+  max-height: 550px;
+  pointer-events: none;
+}
+
+/* Horizontal line - starts at center, animates up via y transform */
+/* Orange (design) on LEFT, Blue (tech) on RIGHT */
+.splash-t-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--akaru-design-accent, #c4703a) 0%,
+    rgba(196, 112, 58, 0.6) 20%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(58, 124, 196, 0.6) 80%,
+    var(--akaru-tech-accent, #3a7cc4) 100%
+  );
+  transform-origin: center;
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.3),
+    0 0 60px rgba(255, 255, 255, 0.15),
+    -100px 0 80px rgba(196, 112, 58, 0.2),
+    100px 0 80px rgba(58, 124, 196, 0.2);
+}
+
+/* Vertical line - drops down from horizontal */
+/* SYNC dimensions with split-portrait.css .t-vertical-line */
+.splash-t-vertical {
+  position: absolute;
+  top: 4px;  /* Start at bottom of horizontal line (4px height) */
+  left: 50%;
+  width: 4px;
+  height: 70vh;
+  max-height: 500px;
+  background: linear-gradient(
+    180deg,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0.5) 10%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  transform-origin: top center;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TAGLINE - SYNC position with split-portrait.css .t-tagline
+   ═══════════════════════════════════════════════════════════ */
+.splash-tagline {
+  position: absolute;
+  /* Position relative to the T-container which is at top: 15% */
+  /* Hero tagline is at top: calc(70vh + 20px) from nav-track-container */
+  top: calc(15% + 70vh + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .splash-letter {
+    font-size: clamp(3.5rem, 18vw, 6rem);
+  }
+  
+  .splash-divider-core {
+    height: 2.5rem;
+    margin: 0 0.3rem;
+  }
+  
+  .splash-t-container {
+    width: 85%;
+  }
+  
+  .splash-tagline {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .splash-letter,
+  .splash-divider-core,
+  .splash-t-horizontal,
+  .splash-t-vertical,
+  .color-trail {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

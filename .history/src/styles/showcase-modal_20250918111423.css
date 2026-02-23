@@ -1,0 +1,178 @@
+/* Full-screen showcase modal styles */
+.showcase-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.showcase-modal {
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
+}
+
+.showcase-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.showcase-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.showcase-modal-content {
+  padding: 3rem;
+  height: 100%;
+  overflow-y: auto;
+  color: white;
+}
+
+.showcase-modal-header {
+  margin-bottom: 3rem;
+}
+
+.showcase-modal-header .showcase-year {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.showcase-modal-header .showcase-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 1rem 0;
+}
+
+.showcase-modal-header .showcase-desc {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.showcase-modal-details {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.showcase-modal-details .showcase-detail-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  opacity: 0.95;
+}
+
+.showcase-modal-details .showcase-detail-section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.showcase-modal-details .showcase-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.showcase-modal-details .showcase-tag {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.showcase-modal-details .showcase-features {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+}
+
+.showcase-modal-details .showcase-features li {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 2rem;
+  opacity: 0.9;
+}
+
+.showcase-modal-details .showcase-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .showcase-overlay {
+    padding: 1rem;
+  }
+  
+  .showcase-modal {
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+  
+  .showcase-modal-content {
+    padding: 2rem;
+  }
+  
+  .showcase-modal-header .showcase-title {
+    font-size: 2.25rem;
+  }
+  
+  .showcase-close {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase-modal-header .showcase-title {
+    font-size: 1.875rem;
+  }
+  
+  .showcase-modal-header .showcase-desc {
+    font-size: 1.125rem;
+  }
+}

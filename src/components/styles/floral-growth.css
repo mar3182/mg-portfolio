@@ -1,0 +1,163 @@
+/**
+ * FloralGrowthEffect Styles
+ * Organic growing botanical animations for the design side
+ */
+
+.floral-growth {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Depth layers - multiple transparency levels */
+.floral-growth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 0% 50%,
+    rgba(196, 112, 58, 0.15) 0%,
+    rgba(196, 112, 58, 0.08) 30%,
+    rgba(196, 112, 58, 0.03) 60%,
+    transparent 100%
+  );
+  z-index: -1;
+}
+
+.floral-growth::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 10% 20%, rgba(212, 165, 116, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 5% 70%, rgba(196, 112, 58, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 90%, rgba(139, 69, 19, 0.08) 0%, transparent 35%);
+  z-index: -2;
+}
+
+.floral-svg {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  top: 0;
+}
+
+.floral-growth--left .floral-svg {
+  left: 0;
+}
+
+.floral-growth--left .floral-svg--mirrored {
+  left: auto;
+  right: 60%;
+  transform: scaleX(-1);
+}
+
+/* Vine stroke styling */
+.floral-vine {
+  fill: none;
+  stroke: url(#vineGradient);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.floral-vine--left {
+  stroke-width: 4;
+}
+
+.floral-vine--bottom {
+  stroke-width: 3;
+}
+
+.floral-vine--corner {
+  stroke-width: 5;
+}
+
+/* Flower petals */
+.floral-petal {
+  fill: #c4703a;
+  opacity: 0.7;
+}
+
+/* Flower center */
+.floral-center {
+  fill: #8b4513;
+}
+
+/* Leaf */
+.floral-leaf {
+  fill: #6b8e23;
+  opacity: 0.6;
+}
+
+/* Additional floating particles/spores */
+.floral-growth::before,
+.floral-growth::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(196, 112, 58, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 30% 40%, rgba(196, 112, 58, 0.2) 2px, transparent 2px),
+    radial-gradient(circle at 15% 60%, rgba(212, 165, 116, 0.25) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 25% 80%, rgba(196, 112, 58, 0.3) 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px, 120px 120px, 80px 80px;
+  animation: floralFloat 20s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.floral-growth::after {
+  animation-delay: -10s;
+  animation-direction: reverse;
+}
+
+/* Activate floating particles when effect is active */
+.floral-growth.is-active::before,
+.floral-growth.is-active::after {
+  opacity: 1;
+}
+
+@keyframes floralFloat {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -15px) rotate(2deg);
+  }
+  50% {
+    transform: translate(-5px, 10px) rotate(-1deg);
+  }
+  75% {
+    transform: translate(15px, 5px) rotate(1deg);
+  }
+}
+
+/* Growing border effect */
+.floral-growth::before {
+  background-image: none;
+  border-left: 2px solid transparent;
+  border-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(196, 112, 58, 0.5) 20%,
+    rgba(196, 112, 58, 0.8) 50%,
+    rgba(196, 112, 58, 0.5) 80%,
+    transparent 100%
+  ) 1;
+  animation: borderGrow 2s ease-out forwards;
+  width: auto;
+  height: 0;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes borderGrow {
+  to {
+    height: 80%;
+  }
+}

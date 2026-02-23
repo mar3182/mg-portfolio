@@ -1,0 +1,164 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * IDENTITY DECORATIVE LAYER STYLES
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Abstract visual elements that respond to identity.
+ * Design: organic, flowing, warm
+ * Tech: geometric, precise, cool
+ */
+
+/* ─── Container ─── */
+.identity-decorative-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Performance optimization */
+  contain: strict;
+  isolation: isolate;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ORGANIC PATTERNS (Design Identity)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Organic Curves SVG ─── */
+.identity-decor__organic {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: top left;
+}
+
+/* ─── Radial Noise Circles ─── */
+.identity-decor__radial-noise {
+  position: absolute;
+  inset: 0;
+}
+
+.radial-noise__circle {
+  position: absolute;
+  width: var(--size, 40%);
+  height: var(--size, 40%);
+  left: var(--x, 20%);
+  top: var(--y, 30%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(196, 112, 58, 0.15) 0%,
+    rgba(196, 112, 58, 0.05) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  /* Subtle breathing animation */
+  animation: radial-breathe 8s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes radial-breathe {
+  0%, 100% { 
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1) translate(2%, 3%);
+    opacity: 0.7;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GEOMETRIC PATTERNS (Tech Identity)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Dot Grid ─── */
+.identity-decor__dot-grid {
+  position: absolute;
+  inset: 0;
+  /* Create dot pattern using radial-gradient */
+  background-image: radial-gradient(
+    circle at center,
+    rgba(58, 156, 196, 0.4) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  background-position: center center;
+  mask-image: radial-gradient(
+    ellipse 80% 80% at 70% 50%,
+    black 0%,
+    transparent 70%
+  );
+}
+
+/* ─── Linear Structures SVG ─── */
+.identity-decor__linear {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Corner Brackets ─── */
+.identity-decor__brackets {
+  position: absolute;
+  inset: 0;
+}
+
+.bracket {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(58, 156, 196, 0.3);
+}
+
+.bracket--top-right {
+  top: 5%;
+  right: 5%;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bracket--bottom-left {
+  bottom: 5%;
+  left: 5%;
+  border-right: none;
+  border-top: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE & REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .radial-noise__circle {
+    animation: none;
+  }
+}
+
+/* Subtle on mobile - reduce visual noise */
+@media (max-width: 768px) {
+  .identity-decor__dot-grid {
+    background-size: 60px 60px;
+    opacity: 0.5;
+  }
+  
+  .bracket {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .radial-noise__circle {
+    filter: blur(60px);
+  }
+}
+
+/* High intensity mode - slightly more visible */
+.identity-decorative-layer[data-intensity="high"] .identity-decor__dot-grid {
+  opacity: 1;
+}
+
+.identity-decorative-layer[data-intensity="high"] .bracket {
+  border-width: 1.5px;
+}
