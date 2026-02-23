@@ -1,0 +1,258 @@
+/**
+ * Identity System Demo Styles
+ */
+
+.identity-demo {
+  padding: 3rem 2rem;
+  background: var(--demo-bg, #0d0d0d);
+  color: var(--demo-text, #f0f0f0);
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: var(--font-body, sans-serif);
+}
+
+.identity-demo__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* State Display */
+.identity-demo__state {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+
+.state-item {
+  text-align: center;
+}
+
+.state-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  font-family: var(--font-logo-tech, monospace);
+}
+
+/* Slider */
+.identity-demo__slider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.slider-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  min-width: 60px;
+}
+
+.slider-label--design {
+  text-align: right;
+}
+
+.slider-label--tech {
+  text-align: left;
+}
+
+.identity-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: linear-gradient(
+    to right,
+    #c4703a 0%,
+    #888888 50%,
+    #3a9cc4 100%
+  );
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.identity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--slider-thumb-color, #888);
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.identity-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.identity-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+/* Actions */
+.identity-demo__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.demo-btn {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: inherit;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.demo-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.demo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.demo-btn--design:hover:not(:disabled) {
+  border-color: #c4703a;
+  color: #c4703a;
+}
+
+.demo-btn--tech:hover:not(:disabled) {
+  border-color: #3a9cc4;
+  color: #3a9cc4;
+}
+
+/* Colors */
+.identity-demo__colors {
+  margin-bottom: 2rem;
+}
+
+.color-swatches {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.swatch {
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 80px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Typography */
+.identity-demo__typography {
+  margin-bottom: 2rem;
+}
+
+.typography-sample {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.typography-metrics {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  font-family: var(--font-logo-tech, monospace);
+}
+
+/* Motion */
+.identity-demo__motion {
+  margin-bottom: 2rem;
+}
+
+.motion-demo-container {
+  position: relative;
+  height: 60px;
+  margin: 1rem 0;
+  padding: 0 20px;
+}
+
+.motion-track {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 50%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-50%);
+}
+
+.motion-demo-ball {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+.motion-metrics {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  font-family: var(--font-logo-tech, monospace);
+}
+
+/* Instructions */
+.identity-demo__instructions {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .identity-demo {
+    padding: 2rem 1rem;
+  }
+  
+  .identity-demo__state {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .identity-demo__actions {
+    flex-direction: column;
+  }
+  
+  .typography-metrics,
+  .motion-metrics {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

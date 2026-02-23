@@ -1,0 +1,156 @@
+/**
+ * SplashLoader Styles
+ * 
+ * Dual-identity loading animation with M (tech) and G (design)
+ * splitting apart to reveal the page.
+ */
+
+.splash-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--akaru-bg, #0d0d0d);
+  overflow: hidden;
+}
+
+/* Curtain overlays that split apart */
+.splash-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: var(--akaru-bg, #0d0d0d);
+  z-index: 1;
+}
+
+.splash-curtain--left {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    var(--akaru-bg, #0d0d0d) 0%,
+    var(--akaru-bg, #0d0d0d) 80%,
+    rgba(58, 124, 196, 0.05) 100%
+  );
+}
+
+.splash-curtain--right {
+  right: 0;
+  background: linear-gradient(
+    -90deg,
+    var(--akaru-bg, #0d0d0d) 0%,
+    var(--akaru-bg, #0d0d0d) 80%,
+    rgba(196, 112, 58, 0.05) 100%
+  );
+}
+
+/* Logo container */
+.splash-logo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Letters */
+.splash-letter {
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--akaru-text, #fafafa);
+  text-shadow: 0 0 80px rgba(255, 255, 255, 0.1);
+}
+
+/* M - Sans-serif (Tech identity) */
+.splash-letter--m {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 200;
+  letter-spacing: -0.05em;
+  color: var(--akaru-tech-accent, #3a7cc4);
+}
+
+/* G - Serif (Design identity) */
+.splash-letter--g {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--akaru-design-accent, #c4703a);
+}
+
+/* Divider between letters */
+.splash-divider {
+  width: 1px;
+  height: 4rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transform-origin: center;
+}
+
+/* Tagline */
+.splash-tagline {
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.tagline-design {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-style: italic;
+  color: var(--akaru-design-accent, #c4703a);
+  letter-spacing: 0.08em;
+}
+
+.tagline-separator {
+  opacity: 0.3;
+  font-size: 0.7rem;
+}
+
+.tagline-tech {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--akaru-tech-accent, #3a7cc4);
+  letter-spacing: 0.25em;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .splash-letter {
+    font-size: clamp(4rem, 20vw, 8rem);
+  }
+  
+  .splash-divider {
+    height: 3rem;
+  }
+  
+  .splash-tagline {
+    font-size: 0.7rem;
+    gap: 0.75rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .splash-loader,
+  .splash-curtain,
+  .splash-letter,
+  .splash-tagline {
+    animation: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+}

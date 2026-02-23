@@ -1,0 +1,29 @@
+/* Split: Horizontal Areas Scroll Section */
+.areas-hs-wrapper { height:400vh; position:relative; }
+.areas-hs-sticky { position:sticky; top:0; height:100vh; overflow:hidden; }
+.areas-hs-track { display:flex; height:100%; align-items:stretch; gap:6vw; padding:0 10vw; }
+.areas-hs-bg { position:absolute; inset:0; opacity:0.35; transition:background .6s ease; }
+.areas-panel { flex:0 0 80vw; max-width:900px; border-radius:2rem; padding:0; display:flex; align-items:stretch; justify-content:center; position:relative; overflow:hidden; box-shadow:0 8px 40px -12px rgba(0,0,0,0.15), 0 2px 6px -1px rgba(0,0,0,0.08); }
+.areas-panel-inner { display:flex; flex-direction:column; width:100%; backdrop-filter:blur(2px); }
+.areas-panel-head { padding:2.2rem 2.4rem 1.2rem; display:flex; flex-direction:column; gap:0.75rem; }
+.areas-panel-index { font-size:0.7rem; font-weight:700; letter-spacing:0.12em; opacity:0.6; }
+.areas-panel-title { font-size:2.8rem; line-height:0.9; margin:0; letter-spacing:-0.03em; }
+.areas-panel-tags { list-style:none; display:flex; flex-wrap:wrap; gap:.5rem; margin:0.25rem 0 0; padding:0; }
+.areas-panel-tags li { background:rgba(0,0,0,0.15); color:#111; font-size:0.65rem; letter-spacing:0.07em; font-weight:600; text-transform:uppercase; padding:0.4rem 0.7rem 0.45rem; border-radius:0.75rem; }
+.areas-panel-body { flex:1; padding:1.25rem 2.4rem 2.4rem; overflow:hidden; display:flex; flex-direction:column; }
+.areas-panel-blurb { font-size:1rem; max-width:40ch; line-height:1.45; margin:0 0 1.5rem; }
+.areas-panel-spacer { flex:1; }
+.areas-panel-more { font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.65; }
+.areas-panel-extra { background:rgba(255,255,255,0.55); padding:1rem 1.25rem 1.1rem; border-radius:1rem; margin-bottom:1.25rem; backdrop-filter:blur(6px); box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+.areas-panel-extra-heading { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; font-weight:700; margin:0 0 .6rem; opacity:0.7; }
+.areas-panel-extra-list { margin:0; padding:0 0 0 1rem; font-size:0.75rem; line-height:1.4; display:grid; gap:.4rem; }
+.areas-progress { position:absolute; bottom:1.25rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.6rem; z-index:20; }
+.areas-progress-bar { width:220px; height:3px; background:rgba(0,0,0,0.15); border-radius:2px; overflow:hidden; }
+.areas-progress-bar span { display:block; height:100%; background:#111; transition:width .35s cubic-bezier(.4,0,.2,1); }
+.areas-progress-dots { list-style:none; margin:0; padding:0; display:flex; gap:.5rem; }
+.areas-progress-dots button { width:10px; height:10px; border-radius:50%; border:none; background:rgba(0,0,0,0.3); cursor:pointer; padding:0; }
+.areas-progress-dots button.is-active { background:#111; transform:scale(1.25); }
+.areas-progress-dots button:focus-visible { outline:2px solid #111; outline-offset:2px; box-shadow:0 0 0 4px rgba(0,0,0,0.18); }
+@media (prefers-reduced-motion: reduce) { .areas-panel { transform:none !important; } .areas-progress-bar span { transition:none; } }
+@media (max-width:1100px) { .areas-panel-title { font-size:2.2rem; } .areas-hs-track { gap:10vw; padding:0 6vw; } .areas-panel { flex:0 0 88vw; } }
+@media (max-width:700px) { .areas-hs-wrapper { height:420vh; } .areas-panel { flex:0 0 96vw; border-radius:1.5rem; } .areas-panel-head { padding:1.6rem 1.6rem 1rem; } .areas-panel-body { padding:1rem 1.6rem 1.6rem; } }

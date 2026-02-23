@@ -1,0 +1,598 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * THE LIVING PORTRAIT — Styles
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Visual Design Philosophy:
+ * - Dark edges, light center (focus on the portrait)
+ * - Bold gradient shapes that bloom with identity
+ * - Cinematic transitions (drift, never snap)
+ * - Award-winning visual presence
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.living-portrait-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: none;
+  display: flex;
+  background: #0a0a0a;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IDENTITY BACKGROUND
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.identity-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Dark base */
+.identity-bg__base {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #0a0a0a 0%,
+    #111111 40%,
+    #0f0f0f 100%
+  );
+}
+
+/* Warm atmosphere (design side) */
+.identity-bg__warm {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 20% 50%,
+    rgba(196, 112, 58, 0.08) 0%,
+    rgba(196, 112, 58, 0.02) 40%,
+    transparent 70%
+  );
+}
+
+/* Cool atmosphere (tech side) */
+.identity-bg__cool {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 80% 50%,
+    rgba(0, 255, 136, 0.06) 0%,
+    rgba(0, 255, 136, 0.02) 40%,
+    transparent 70%
+  );
+}
+
+/* Light center focal area - where the portrait lives */
+.identity-bg__focal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  height: 85%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(240, 238, 234, 0.95) 0%,
+    rgba(235, 232, 226, 0.9) 25%,
+    rgba(220, 215, 208, 0.7) 50%,
+    rgba(180, 175, 168, 0.3) 70%,
+    transparent 85%
+  );
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IDENTITY SHAPES — Bold gradient decorations
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.identity-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.identity-shape {
+  position: absolute;
+  border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+  filter: blur(2px);
+  will-change: transform, opacity;
+  transition: opacity 0.6s ease-out;
+}
+
+.identity-shape--warm {
+  /* Coral, purple, orange shapes */
+}
+
+.identity-shape--cool {
+  /* Green, blue tech shapes */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.living-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 32px;
+  z-index: 100;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(10, 10, 10, 0.8) 60%,
+    transparent 100%
+  );
+}
+
+.living-nav__logo {
+  margin-bottom: 60px;
+}
+
+.logo-text {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.living-nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.living-nav__item {
+  position: relative;
+}
+
+.living-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  transition: color 0.3s ease;
+}
+
+.living-nav__link:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.living-nav__item.active .living-nav__link {
+  color: #ffffff;
+}
+
+.living-nav__indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c4703a;
+  transition: background 0.4s ease;
+}
+
+.living-nav__social {
+  display: flex;
+  gap: 16px;
+  margin-top: auto;
+  margin-bottom: 24px;
+}
+
+.living-nav__social-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease;
+}
+
+.living-nav__social-icon:hover {
+  color: #ffffff;
+}
+
+.living-nav__social-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.living-nav__copyright {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAIN CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.living-portrait-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: 200px;
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PORTRAIT TRIAD
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.portrait-triad {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait {
+  position: absolute;
+  will-change: transform, opacity;
+  pointer-events: auto;
+}
+
+/* Design Portrait - Left, warm tones */
+.portrait--design {
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 480px;
+  z-index: 5;
+}
+
+.portrait__img--warm {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: 
+    sepia(0.15) 
+    saturate(1.1) 
+    brightness(1.02)
+    hue-rotate(-8deg);
+  border-radius: 4px;
+  box-shadow: 
+    0 30px 60px rgba(196, 112, 58, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Center Portrait - Primary, B&W */
+.portrait--center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 550px;
+  z-index: 10;
+}
+
+.portrait__img--bw {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1) brightness(1.02);
+  border-radius: 4px;
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.4),
+    0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Tech Portrait - Right, green/cyber */
+.portrait--tech {
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 480px;
+  z-index: 5;
+}
+
+.portrait__img--tech {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: 
+    hue-rotate(90deg) 
+    saturate(0.8) 
+    brightness(0.95)
+    contrast(1.1);
+  border-radius: 4px;
+  box-shadow: 
+    0 30px 60px rgba(0, 255, 136, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Circuit Overlay */
+.circuit-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IDENTITY TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.identity-typography {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.identity-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  will-change: opacity;
+}
+
+.identity-title h1 {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: 0;
+  color: #1a1a1a;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title-line {
+  display: block;
+}
+
+.title-line--indent {
+  margin-left: 5%;
+}
+
+.identity-subline {
+  margin-top: 20px;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: rgba(26, 26, 26, 0.7);
+  text-transform: uppercase;
+}
+
+/* Design state - warm accent */
+.identity-title--design h1 {
+  color: #1a1a1a;
+}
+
+.identity-title--design .identity-subline {
+  color: rgba(196, 112, 58, 0.8);
+}
+
+/* Neutral state */
+.identity-title--neutral h1 {
+  color: #1a1a1a;
+}
+
+.identity-title--neutral .identity-subline {
+  color: rgba(100, 100, 100, 0.8);
+}
+
+/* Tech state - cool accent */
+.identity-title--tech h1 {
+  color: #1a1a1a;
+}
+
+.identity-title--tech .identity-subline {
+  color: rgba(0, 200, 100, 0.8);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.living-portrait-footer {
+  position: absolute;
+  bottom: 20px;
+  right: 32px;
+  z-index: 100;
+}
+
+.living-portrait-footer p {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CUSTOM CURSOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor--link {
+  width: 40px;
+  height: 40px;
+  background: rgba(196, 112, 58, 0.8);
+  mix-blend-mode: normal;
+}
+
+.custom-cursor--view {
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  mix-blend-mode: normal;
+}
+
+.custom-cursor--view::after {
+  content: 'VIEW';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  .portrait--design {
+    width: 260px;
+    height: 400px;
+    left: 5%;
+  }
+  
+  .portrait--center {
+    width: 340px;
+    height: 480px;
+  }
+  
+  .portrait--tech {
+    width: 260px;
+    height: 400px;
+    right: 5%;
+  }
+}
+
+@media (max-width: 900px) {
+  .living-nav {
+    width: 80px;
+    padding: 24px 16px;
+  }
+  
+  .living-nav__logo {
+    margin-bottom: 40px;
+  }
+  
+  .logo-text {
+    font-size: 1.25rem;
+  }
+  
+  .living-nav__link {
+    font-size: 0;
+  }
+  
+  .living-nav__indicator {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .living-portrait-main {
+    margin-left: 80px;
+  }
+  
+  /* Stack portraits on smaller screens */
+  .portrait--design,
+  .portrait--tech {
+    display: none;
+  }
+  
+  .portrait--center {
+    width: 80vw;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 3/4;
+  }
+}
+
+@media (max-width: 600px) {
+  .living-nav {
+    width: 60px;
+    padding: 16px 12px;
+  }
+  
+  .living-portrait-main {
+    margin-left: 60px;
+  }
+  
+  .identity-title h1 {
+    font-size: 2.5rem;
+  }
+  
+  .identity-subline {
+    font-size: 0.8rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(4px);
+  }
+}
+
+/* Subtle floating animation for shapes */
+.identity-shape {
+  animation: float 8s ease-in-out infinite;
+}
+
+.identity-shape:nth-child(2) {
+  animation-delay: -2s;
+  animation-duration: 10s;
+}
+
+.identity-shape:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 12s;
+}

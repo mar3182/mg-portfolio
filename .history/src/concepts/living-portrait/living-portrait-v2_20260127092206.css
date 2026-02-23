@@ -1,0 +1,450 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * LIVING PORTRAIT V2 — Styles
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/* ═══ RESET & BASE ═══ */
+.living-portrait-v2 {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+  cursor: none;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ═══ IDENTITY BACKGROUND ═══ */
+.identity-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.identity-bg__base {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, #0f0f0f 0%, #050505 100%);
+}
+
+.identity-bg__focal {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(40,40,40,0.15) 0%, transparent 70%);
+}
+
+.identity-bg__warm {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 30% 50%, rgba(255, 140, 66, 0.15) 0%, transparent 70%);
+}
+
+.identity-bg__cool {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 70% 50%, rgba(27, 231, 255, 0.12) 0%, transparent 70%);
+}
+
+/* ═══ GRADIENT SHAPES ═══ */
+.gradient-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gradient-shapes__design,
+.gradient-shapes__tech {
+  position: absolute;
+  inset: 0;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.shape--coral {
+  width: 400px;
+  height: 400px;
+  top: 15%;
+  left: 5%;
+  background: radial-gradient(circle, rgba(255, 127, 80, 0.4) 0%, transparent 70%);
+}
+
+.shape--orange {
+  width: 300px;
+  height: 300px;
+  bottom: 20%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.35) 0%, transparent 70%);
+}
+
+.shape--purple {
+  width: 350px;
+  height: 350px;
+  top: 20%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, transparent 70%);
+}
+
+.shape--blue {
+  width: 280px;
+  height: 280px;
+  bottom: 25%;
+  right: 5%;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.35) 0%, transparent 70%);
+}
+
+/* ═══ CUSTOM CURSOR ═══ */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: difference;
+}
+
+.cursor-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: white;
+  font-weight: 500;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ═══ NAVIGATION ═══ */
+.nav-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  z-index: 100;
+  background: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, transparent 100%);
+}
+
+.nav-sidebar__logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.nav-sidebar__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.nav-link:hover,
+.nav-link--active {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nav-indicator {
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+}
+
+/* ═══ MAIN CONTENT ═══ */
+.living-portrait-v2__main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* ═══ SCANNER PORTRAIT ═══ */
+.scanner-portrait {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+}
+
+.scanner-portrait__mask {
+  position: relative;
+  width: 450px;
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mask-image: radial-gradient(ellipse 50% 48% at 50% 50%, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 48% at 50% 50%, black 60%, transparent 100%);
+}
+
+.scanner-portrait__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+.scanner-portrait__img--base {
+  z-index: 1;
+}
+
+.scanner-portrait__img--design {
+  z-index: 2;
+}
+
+.scanner-portrait__img--tech {
+  z-index: 2;
+}
+
+/* ═══ SCANNER LINE ═══ */
+.scanner-line {
+  position: absolute;
+  top: 10%;
+  height: 80%;
+  z-index: 30;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.scanner-line__beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.scanner-line__head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ═══ TYPOGRAPHY ═══ */
+.typography {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.typography__design {
+  position: absolute;
+  left: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.typography__design h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 140, 66, 0.9);
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.typography__center {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.typography__center h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 200;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.title-line {
+  display: block;
+}
+
+.title-line--offset {
+  margin-left: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.subline {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.typography__tech {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+.typography__tech h2 {
+  font-family: 'Space Grotesk', monospace, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: rgba(27, 231, 255, 0.9);
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* ═══ SOCIAL LINKS ═══ */
+.social-links {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 100;
+}
+
+.social-link {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+  color: white;
+  transform: scale(1.2);
+}
+
+.social-line {
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 1rem;
+  transform-origin: top;
+}
+
+/* ═══ FOOTER ═══ */
+.living-portrait-v2__footer {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  text-align: center;
+}
+
+.living-portrait-v2__footer p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .nav-sidebar {
+    width: 60px;
+  }
+  
+  .typography__design,
+  .typography__tech {
+    display: none;
+  }
+  
+  .scanner-portrait__mask {
+    width: 50vh;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .living-portrait-v2 {
+    cursor: auto;
+  }
+  
+  .custom-cursor,
+  .cursor-dot {
+    display: none;
+  }
+  
+  .nav-sidebar {
+    display: none;
+  }
+  
+  .social-links {
+    right: 15px;
+  }
+  
+  .scanner-portrait__mask {
+    width: 80vw;
+    height: 60vh;
+  }
+}

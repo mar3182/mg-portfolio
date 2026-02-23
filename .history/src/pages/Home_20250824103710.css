@@ -1,0 +1,18 @@
+.home-section {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+  padding: 4rem 2rem;
+}
+.home-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.home-section p {
+  font-size: 1.2rem;
+  color: #555;
+}

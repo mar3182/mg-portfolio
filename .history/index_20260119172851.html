@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mary Garcia - Full Stack Developer & Software Architect</title>
+    <!-- Removed unused external font preconnect + initial font preload to let fallback render sooner (aim: earlier FCP/LCP). Full variable font will still load via fonts.css with font-display:swap. -->
+    <!-- Critical CSS (minified) -->
+    <style>
+      html {
+        font-family: Inter, "Inter Fallback", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        /* Dark base for identity system */
+        background: #0d0d0d;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        /* Transparent to show identity background layer */
+        background: transparent;
+        color: #fafafa;
+        -webkit-font-smoothing: antialiased;
+      }
+      .primary-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2.2rem;
+        z-index: 80;
+        background: #f5f5f5;
+      }
+      .giant-text {
+        font-size: clamp(6rem, 22vw, 20rem);
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 0.82;
+        margin: 0;
+        padding-top: 84px;
+        display: block;
+        position: relative;
+        z-index: 5;
+        pointer-events: none;
+      }
+      html.enhance-ui .primary-header {
+        backdrop-filter: saturate(180%) blur(14px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      #home {
+        min-height: 68vh;
+        display: flex;
+        align-items: flex-start;
+      }
+      .hero-right {
+        content-visibility: auto;
+        contain-intrinsic-size: 800px 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Static module entry so Vite includes it in production build; type=module already defers execution -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

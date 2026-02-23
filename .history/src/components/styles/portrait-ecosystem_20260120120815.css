@@ -1,0 +1,32 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * PORTRAIT ECOSYSTEM — Canvas Styles
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * The canvas sits behind the portrait, allowing growth to appear
+ * to emanate from the portrait itself.
+ */
+
+.portrait-ecosystem {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1; /* Above background, below portrait */
+  pointer-events: none;
+}
+
+/* Reduce intensity on mobile for performance */
+@media (max-width: 768px) {
+  .portrait-ecosystem {
+    opacity: 0.5;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .portrait-ecosystem {
+    display: none;
+  }
+}

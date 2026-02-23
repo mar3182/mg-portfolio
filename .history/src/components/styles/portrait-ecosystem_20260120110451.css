@@ -1,0 +1,166 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * PORTRAIT ECOSYSTEM STYLES
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Living portrait that inhabits the entire page.
+ * BOLD approach: Unmistakably portrait-derived, almost surreal.
+ */
+
+/* ─── Main Container ─── */
+.portrait-ecosystem {
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* Above identity-background (-1), below content */
+  pointer-events: none;
+  overflow: hidden;
+  /* GPU optimization */
+  will-change: transform;
+  contain: layout style;
+}
+
+/* ═══ PARTICLE CANVAS ═══ */
+.ecosystem-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* ═══ ECHO LAYERS (Blurred Silhouettes) ═══ */
+.ecosystem-echoes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.ecosystem-echo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  /* Will be transformed via Framer Motion */
+}
+
+.ecosystem-echo img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  object-fit: contain;
+  /* Grayscale for ghost effect, with slight color hint */
+  filter: grayscale(70%) contrast(0.8);
+  opacity: inherit;
+  mix-blend-mode: screen;
+}
+
+/* ═══ FRAGMENT LAYERS ═══ */
+.ecosystem-fragments {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.ecosystem-fragment {
+  position: fixed;
+  overflow: hidden;
+  /* Transform via Framer Motion */
+}
+
+.ecosystem-fragment img {
+  width: 200%;
+  height: 200%;
+  object-fit: cover;
+  object-position: center 30%; /* Focus on face area */
+  /* Desaturated for ethereal look */
+  filter: grayscale(50%) contrast(1.1);
+  mix-blend-mode: screen;
+}
+
+/* Fragment type variations */
+.ecosystem-fragment--eye {
+  /* Eyes get slightly more contrast */
+}
+
+.ecosystem-fragment--eye img {
+  object-position: center 35%;
+  filter: grayscale(40%) contrast(1.2);
+}
+
+.ecosystem-fragment--profile {
+  /* Profile silhouettes are more ghostly */
+}
+
+.ecosystem-fragment--profile img {
+  filter: grayscale(70%) contrast(0.9);
+}
+
+.ecosystem-fragment--gesture {
+  /* Hand/gesture fragments */
+}
+
+.ecosystem-fragment--gesture img {
+  object-position: center 70%;
+}
+
+.ecosystem-fragment--silhouette {
+  /* Large ghostly presence */
+  transform: translateX(-50%);
+}
+
+.ecosystem-fragment--silhouette img {
+  filter: grayscale(80%) contrast(0.7);
+  mix-blend-mode: soft-light;
+}
+
+/* ═══ BREATHING OVERLAY ═══ */
+.ecosystem-breath {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    ellipse 60% 60% at 50% 50%,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 70%
+  );
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ═══ IDENTITY-BASED COLOR SHIFTS ═══ */
+/* Applied via CSS custom properties from JS */
+.portrait-ecosystem[data-identity="design"] .ecosystem-echo img {
+  filter: grayscale(50%) contrast(0.8) sepia(20%);
+}
+
+.portrait-ecosystem[data-identity="tech"] .ecosystem-echo img {
+  filter: grayscale(60%) contrast(0.9) hue-rotate(200deg);
+}
+
+/* ═══ PERFORMANCE: Reduce on lower-end devices ═══ */
+@media (prefers-reduced-motion: reduce) {
+  .portrait-ecosystem {
+    display: none;
+  }
+}
+
+/* Hide on very small screens for performance */
+@media (max-width: 640px) {
+  .ecosystem-fragments {
+    display: none;
+  }
+  
+  .ecosystem-echoes {
+    opacity: 0.5;
+  }
+}
+
+/* ═══ SCROLL-BASED VISIBILITY ═══ */
+/* Fragments become more prominent as you scroll */
+.portrait-ecosystem {
+  --scroll-reveal: 0;
+}
+
+/* When scrolled, show more ecosystem */
+:root:has(.split-portrait-hero:not(:hover)) .portrait-ecosystem {
+  /* Ecosystem more visible when not hovering hero */
+}

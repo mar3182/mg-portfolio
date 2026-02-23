@@ -1,0 +1,368 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CINEMATIC PORTRAIT HERO — Styles
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * Premium, editorial styling for the interactive portrait hero.
+ * 
+ * Design principles:
+ * - Dark, minimal background
+ * - Rounded editorial framing
+ * - Cinematic vignette effects
+ * - Subtle film grain texture
+ * - Soft light bloom
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAIN CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Transparent to show identity background */
+  background: transparent;
+  overflow: hidden;
+  cursor: crosshair;
+  /* Focus styles for accessibility */
+  outline: none;
+}
+
+.cinematic-portrait:focus-visible {
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Entrance animation */
+.cinematic-portrait {
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.2s ease-out, transform 1.5s ease-out;
+}
+
+.cinematic-portrait--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PORTRAIT FRAME (Free-floating, no container)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* No border-radius, no shadow - free floating */
+  overflow: visible;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PORTRAIT LAYERS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, transform;
+}
+
+.cinematic-portrait__image {
+  /* Free-floating portrait - sized by content */
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* Prevent image dragging */
+  user-select: none;
+  pointer-events: none;
+  /* Smooth rendering */
+  image-rendering: auto;
+  /* Subtle drop shadow for depth against background */
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.4));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VIGNETTE EFFECTS (Full viewport)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Top vignette - darker, more dramatic */
+.cinematic-portrait__vignette-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.2) 40%,
+    transparent 100%
+  );
+}
+
+/* Bottom vignette - softer fade */
+.cinematic-portrait__vignette-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 30%,
+    transparent 100%
+  );
+}
+
+/* Radial vignette - subtle corner darkening */
+.cinematic-portrait__vignette-radial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT BLOOM EFFECT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__bloom {
+  position: fixed;
+  inset: -25%;
+  width: 150%;
+  height: 150%;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+  filter: blur(60px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FILM GRAIN OVERLAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  mix-blend-mode: overlay;
+  /* SVG noise pattern */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  /* Subtle animation for organic feel */
+  animation: grain-animate 0.5s steps(1) infinite;
+}
+
+@keyframes grain-animate {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+  100% { transform: translate(2px, 2px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IDENTITY LABELS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 280px;
+  padding: 1.5rem;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.cinematic-portrait__label--design {
+  left: 5%;
+  text-align: left;
+}
+
+.cinematic-portrait__label--tech {
+  right: 5%;
+  text-align: right;
+}
+
+.cinematic-portrait__label-title {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--identity-accent, #fff);
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.cinematic-portrait__label--design .cinematic-portrait__label-title {
+  color: #c4703a;
+}
+
+.cinematic-portrait__label--tech .cinematic-portrait__label-title {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: #3a9cc4;
+}
+
+.cinematic-portrait__label-desc {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLL HINT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 20;
+}
+
+.cinematic-portrait__scroll-hint svg {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INTERACTION HINT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.cinematic-portrait__hint {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .cinematic-portrait__image {
+    max-width: 85vw;
+    max-height: 75vh;
+  }
+
+  .cinematic-portrait__label {
+    max-width: 200px;
+    padding: 1rem;
+  }
+
+  .cinematic-portrait__label--design {
+    left: 2%;
+  }
+
+  .cinematic-portrait__label--tech {
+    right: 2%;
+  }
+}
+
+/* Mobile - Static split portrait, no interaction */
+@media (max-width: 640px) {
+  .cinematic-portrait {
+    cursor: default;
+    min-height: 80vh;
+    padding: 2rem 1rem;
+  }
+
+  .cinematic-portrait__image {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .cinematic-portrait__label {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    text-align: center;
+    max-width: 100%;
+    padding: 1rem 0;
+  }
+
+  .cinematic-portrait__label--design,
+  .cinematic-portrait__label--tech {
+    display: none;
+  }
+
+  .cinematic-portrait__hint {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-portrait,
+  .cinematic-portrait__layer,
+  .cinematic-portrait__bloom {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .cinematic-portrait__grain {
+    animation: none;
+  }
+
+  .cinematic-portrait__scroll-hint svg {
+    animation: none;
+  }
+}

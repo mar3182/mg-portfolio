@@ -1,0 +1,240 @@
+/**
+ * SpatialHub Styles — Minimal Edge Navigation
+ * 
+ * Philosophy: Nearly invisible. Just arrows on hover.
+ * The SplitPortraitHero handles all identity/content display.
+ */
+
+.spatial-hub {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.spatial-center {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EDGE NAVIGATION ZONES — Ultra Minimal
+   ═══════════════════════════════════════════════════════════ */
+.spatial-edge {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.spatial-edge:focus {
+  outline: none;
+}
+
+.spatial-edge:focus .edge-indicator {
+  opacity: 1;
+}
+
+/* Left edge - Design */
+.spatial-edge--left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 200px;
+  width: 60px;
+}
+
+/* Right edge - Tech */
+.spatial-edge--right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 200px;
+  width: 60px;
+}
+
+/* Top edge - About */
+.spatial-edge--top {
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  width: 100px;
+}
+
+/* Edge glow effect - very subtle */
+.edge-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.spatial-edge:hover .edge-glow {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EDGE INDICATOR — Just an arrow
+   ═══════════════════════════════════════════════════════════ */
+.edge-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.spatial-edge:hover .edge-indicator {
+  opacity: 1;
+}
+
+.edge-arrow {
+  font-size: 1.5rem;
+  color: rgba(250, 250, 250, 0.6);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.spatial-edge--left:hover .edge-arrow {
+  transform: translateX(-4px);
+  color: #c4703a;
+}
+
+.spatial-edge--right:hover .edge-arrow {
+  transform: translateX(4px);
+  color: #3a7cc4;
+}
+
+.spatial-edge--top:hover .edge-arrow {
+  transform: translateY(-4px);
+  color: rgba(250, 250, 250, 0.9);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CLICK HINT — Shows on edge hover
+   ═══════════════════════════════════════════════════════════ */
+.spatial-edge::after {
+  content: 'Click to explore';
+  position: absolute;
+  padding: 0.4rem 0.8rem;
+  background: rgba(13, 13, 13, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: rgba(250, 250, 250, 0.7);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+.spatial-edge--left::after {
+  left: 60px;
+  content: 'Click → Design';
+}
+
+.spatial-edge--right::after {
+  right: 60px;
+  content: '← Click for Tech';
+}
+
+.spatial-edge--top::after {
+  top: 50px;
+  content: '↑ About';
+}
+
+.spatial-edge:hover::after {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL PROMPT
+   ═══════════════════════════════════════════════════════════ */
+.scroll-prompt {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 40;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, 0.4);
+}
+
+.scroll-prompt .scroll-arrow {
+  font-size: 1rem;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KEYBOARD HINT
+   ═══════════════════════════════════════════════════════════ */
+.keyboard-hint {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 40;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.6rem;
+  color: rgba(250, 250, 250, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile uses swipe gestures
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hide edge zones on mobile - swipe gestures handle nav */
+  .spatial-edge {
+    display: none;
+  }
+  
+  .keyboard-hint {
+    display: none;
+  }
+  
+  .scroll-prompt {
+    bottom: 1.5rem;
+  }
+  
+  /* Show swipe hint on mobile instead */
+  .scroll-prompt::before {
+    content: 'Swipe ← → to explore';
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.6rem;
+    opacity: 0.6;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .edge-arrow,
+  .scroll-arrow {
+    animation: none !important;
+    transition: none !important;
+  }
+}

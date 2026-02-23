@@ -1,0 +1,112 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * IDENTITY BACKGROUND STYLES — Award-Level Compositing
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * LAYER ARCHITECTURE:
+ * 1. Base Atmosphere (always present)
+ * 2. Identity Atmospheres (drift, never switch)
+ * 3. Accent/Energy (barely noticeable)
+ * 4. Light/Grain/Vignette (top)
+ * 
+ * MOTION RULES:
+ * - All transitions 2-4s
+ * - Linear or soft easeInOut
+ * - Never springy
+ */
+
+/* ─── Container ─── */
+.identity-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  /* GPU compositing */
+  will-change: opacity;
+  contain: strict;
+}
+
+/* ═══ LAYER 1: BASE ATMOSPHERE ═══ */
+/* Always present - visual stability */
+.identity-bg__base {
+  position: absolute;
+  inset: 0;
+  /* Controlled inline - no transition needed, it's static */
+}
+
+/* ═══ LAYER 2: IDENTITY ATMOSPHERES ═══ */
+/* These drift slowly, never switch */
+.identity-bg__atmosphere {
+  position: absolute;
+  inset: 0;
+  /* CRITICAL: Slow transitions for cinematic feel */
+  transition: opacity 2.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: opacity;
+}
+
+.identity-bg__atmosphere--design {
+  /* Warm, organic, asymmetric positioning via inline styles */
+}
+
+.identity-bg__atmosphere--tech {
+  /* Cool, structured positioning via inline styles */
+}
+
+/* ═══ LAYER 3: ACCENT/ENERGY ═══ */
+/* Barely noticeable - subconscious */
+.identity-bg__accent {
+  position: absolute;
+  inset: 0;
+  /* Very slow, almost imperceptible */
+  transition: opacity 3s linear;
+  will-change: opacity;
+  mix-blend-mode: screen;
+}
+
+/* ═══ TOP LAYERS ═══ */
+
+/* Vignette - frames the portrait, adds depth */
+.identity-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 85% 85% at 50% 50%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Film Grain - subtle texture, organic feel */
+.identity-bg__grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  mix-blend-mode: overlay;
+  opacity: 0.035;
+  /* Very slow, subtle shift */
+  animation: grain-drift 12s linear infinite;
+}
+
+@keyframes grain-drift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, -3%); }
+  50% { transform: translate(1%, 2%); }
+  75% { transform: translate(-1%, 1%); }
+}
+
+/* ─── Performance: Reduce motion preference ─── */
+@media (prefers-reduced-motion: reduce) {
+  .identity-bg__grain {
+    animation: none;
+  }
+  
+  .identity-bg__atmosphere,
+  .identity-bg__accent {
+    transition: opacity 0.5s ease;
+  }
+}

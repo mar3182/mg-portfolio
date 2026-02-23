@@ -1,0 +1,139 @@
+# Sprint: UX Polish & Accessibility
+
+Date: 16 Sep 2025 → 23 Sep 2025 (1 week)
+
+Owner: MG Portfolio
+
+## Goals
+
+- Improve clarity, accessibility, and discoverability across routes without regressing performance.
+- Tighten interaction details (focus, hover, motion) and content presentation (blog, CTAs).
+- Ship incremental improvements one at a time with clear acceptance criteria and DoD.
+
+## Success Metrics (Definition of Success)
+
+- Accessibility: Lighthouse Accessibility ≥ 95 on key pages (Home, Projects, Blog, Contact).
+- Usability: Clear primary CTA on Home; add discoverable cues for scroll/filters.
+- Content UX: Blog dates formatted, search debounced, share row available, author attribution visible.
+- Interaction: All interactive elements have visible :focus-visible states and no inline JS hover mutations.
+- Navigation: 404 offers helpful links.
+
+## Out of Scope
+
+- Large refactors of content architecture, CMS integrations, or design language overhaul.
+- Performance budget expansion (kept in check; small libs only if truly needed).
+
+---
+
+## Backlog (Prioritized; deliver one-by-one)
+
+1. Debounce blog search + date formatting
+
+   - Why: Reduce typing lag, improve readability of dates and results quality.
+   - User Story: As a reader, I want fast, relevant blog search and human-readable dates so I can find content quickly.
+   - Acceptance Criteria:
+     - Search input debounced ~250–300ms.
+     - By default, search matches title/excerpt/tags; optional full-content toggle is prepared (can be deferred).
+     - Dates rendered as e.g., "Sep 16, 2025" on list and post.
+   - Tasks:
+     - Implement debounce in `src/pages/Blog.jsx`.
+     - Replace ISO date strings rendering with Intl.DateTimeFormat in Blog and BlogPost.
+   - DoD: Manual test on dev server confirms debounce and formatting; no console errors.
+
+1. Home hero CTA + scroll cue
+
+   - Why: Improve discoverability and conversion path from hero.
+   - User Story: As a visitor, I can quickly jump to Projects and understand that the right pane scrolls.
+   - Acceptance Criteria:
+     - Primary CTA under hero subheading links to Projects.
+     - Subtle scroll cue (icon/chevron + label) in right pane.
+   - Tasks: Add CTA button; add scroll cue with reduced motion fallback.
+   - DoD: CTA keyboard-focusable, meets contrast; cue hidden from screen readers if purely decorative.
+
+1. CSS focus/hover cleanup
+
+   - Why: Keyboard accessibility and consistent interaction states.
+   - User Story: As a keyboard user, I can see where I am and interact without surprises.
+   - Acceptance Criteria:
+     - Replace inline onMouseEnter/Leave style mutations with CSS classes.
+     - Add :focus-visible styles for nav items, buttons, links, and filter pills.
+   - Tasks: Update styles in components (ProjectDetail buttons, filters, nav items).
+   - DoD: Keyboard tab order verified; focus outline visible and not clipped.
+
+1. BlogPost author bio + share row
+
+   - Why: Credibility and shareability improve engagement.
+   - User Story: As a reader, I can see who wrote the post and share it easily.
+   - Acceptance Criteria:
+     - Author bio block below header (photo/initials, role, short bio, link to contact or about).
+     - Share row with X (Twitter), LinkedIn, and Copy Link; keyboard-accessible with labels.
+   - Tasks: Add UI to `src/pages/BlogPost.jsx`; small utility to copy URL.
+   - DoD: Share actions work; copy uses navigator.clipboard with fallback.
+
+1. 404 improvements
+
+   - Why: Reduce dead-end pages.
+   - User Story: As a lost user, I get clear options to continue.
+   - Acceptance Criteria:
+     - Links to Projects, Blog, Contact; optional small search input.
+   - Tasks: Update `src/pages/NotFound.jsx`.
+   - DoD: Page keyboard-accessible; links styled consistently.
+
+1. Next project navigation
+
+   - Why: Encourage exploration; reduce bounce.
+   - User Story: As a portfolio viewer, I can move to the next project easily.
+   - Acceptance Criteria:
+     - A "Next project" link at Project Detail bottom cycling through project list.
+   - Tasks: Add link in `ProjectDetail.jsx` using `projects` data.
+   - DoD: Verified navigation with keyboard and mouse; deep link works.
+
+1. Filter pill accessibility (Projects)
+
+   - Why: Better affordance; clearer selected state; stronger a11y semantics.
+   - User Story: As a user, I can understand and change filters confidently.
+   - Acceptance Criteria:
+     - Pills styled as segmented control; aria-pressed states correct; focus-visible on pills.
+   - Tasks: Style adjustments in `Projects.jsx` + CSS; consider role="toolbar" label enhancements.
+   - DoD: Screen reader announces filter change; visually clear selected state.
+
+1. Footer a11y polish
+
+   - Why: Social links should be explicit for assistive technology.
+   - User Story: As a screen reader user, I understand where each footer link goes.
+   - Acceptance Criteria:
+     - aria-labels added; target and rel attributes correct; visible focus.
+   - Tasks: Update `src/components/Footer.jsx` and CSS.
+   - DoD: Lighthouse a11y improves or remains ≥ 95.
+
+---
+
+## Timeline & Cadence
+
+- Daily order (sequential): 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8.
+- Each task merged after local verification on dev server.
+- Keep changes small to limit regression risk.
+
+## Quality Gates (per task)
+
+- Build & Dev: Vite dev server runs without errors.
+- Lint: No new lint/type errors in changed files.
+- A11y: Keyboard focus visible; color contrast checks for adjusted UI.
+- Perf: No significant JS bundle growth (> +10KB) without justification.
+
+## Risks & Mitigations
+
+- Risk: Adding share/author blocks could bloat bundle. Mitigation: Keep assets inline/minimal, lazy-load heavy parts; no large libs.
+- Risk: Debounce timing too aggressive or too slow. Mitigation: Start at 250–300ms and adjust via quick test.
+- Risk: CSS focus states clash with existing styles. Mitigation: Use :focus-visible with consistent token colors.
+
+## Rollout & Comms
+
+- Ship each improvement behind a small PR (or commit) with a short changelog in `docs/CHANGELOG.md` (optional).
+- Verify live on dev server after each change; capture before/after screenshots for the sprint review.
+
+## Acceptance (Sprint-Level)
+
+- All 8 backlog items delivered with their DoD.
+- No regressions in navigation, routing, or core interactions.
+- Lighthouse a11y ≥ 95 on key routes.

@@ -1,0 +1,24 @@
+/* Split: Expertise Section styles (extracted from akaru-styles.css) */
+.expertise-section { position: relative; padding: 8rem 0 6rem; }
+.expertise-inner { display: grid; grid-template-columns: minmax(260px,340px) 1fr; gap: 4rem; align-items: start; max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
+.expertise-left { position: sticky; top: 6rem; align-self: start; }
+.expertise-list { list-style: none; margin: 2rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
+.expertise-tab { width: 100%; text-align: left; background: none; border: none; padding: .75rem 1rem .85rem; display: flex; gap: 1rem; align-items: baseline; cursor: pointer; font: inherit; color: #222; border-radius: 0.5rem; position: relative; transition: background .25s, color .25s; }
+.expertise-tab:hover { background: rgba(0,0,0,0.04); }
+.expertise-tab.active { background: #111; color: #fff; }
+.expertise-index { font-size: .8rem; letter-spacing: .08em; font-weight: 600; opacity: .6; }
+.expertise-tab.active .expertise-index { opacity: .9; }
+.expertise-title { font-size: .95rem; font-weight: 600; letter-spacing: .5px; }
+.expertise-right { min-height: 360px; }
+.expertise-panel { border-radius: 1.25rem; padding: 2.2rem 2.4rem 2.4rem; box-shadow: 0 4px 18px -6px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06); }
+.expertise-panel-inner { display: flex; flex-direction: column; gap: 1.5rem; }
+.expertise-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem .75rem; }
+.expertise-tag { background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); padding: .45rem .75rem .5rem; border-radius: .75rem; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #222; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+.expertise-blurb { font-size: .95rem; max-width: 44ch; line-height: 1.5; }
+/* Metrics */
+.expertise-metrics { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap:1rem 1.25rem; }
+.metric { display:flex; flex-direction:column; align-items:flex-start; }
+.metric-number { font-size:1.25rem; font-weight:700; letter-spacing:-0.02em; }
+.metric-label { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.7; }
+@media (max-width: 980px) { .expertise-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 2rem; } .expertise-left { position: initial; top: auto; } .expertise-tab { padding: .65rem .85rem .7rem; } .expertise-panel { padding: 1.75rem 1.75rem 2rem; } }
+@media (max-width: 600px) { .expertise-section { padding: 5rem 0 4rem; } .expertise-inner { padding: 0 1.25rem; } .expertise-panel { border-radius: 1rem; } }

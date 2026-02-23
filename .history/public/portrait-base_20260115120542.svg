@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d0d0d;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="1000" fill="url(#bgGrad)"/>
+  
+  <!-- Silhouette placeholder -->
+  <ellipse cx="400" cy="280" rx="140" ry="180" fill="#2a2a2a"/>
+  <ellipse cx="400" cy="580" rx="200" ry="300" fill="#2a2a2a"/>
+  
+  <!-- Face features hint -->
+  <ellipse cx="350" cy="250" rx="20" ry="12" fill="#1a1a1a"/>
+  <ellipse cx="450" cy="250" rx="20" ry="12" fill="#1a1a1a"/>
+  <ellipse cx="400" cy="310" rx="8" ry="12" fill="#1a1a1a"/>
+  <path d="M 360 350 Q 400 380 440 350" stroke="#1a1a1a" stroke-width="3" fill="none"/>
+  
+  <!-- T-shirt hint -->
+  <rect x="250" y="520" width="300" height="200" rx="20" fill="#333"/>
+  
+  <!-- Placeholder text -->
+  <text x="400" y="900" font-family="Inter, sans-serif" font-size="24" fill="#666" text-anchor="middle">
+    Add your portrait
+  </text>
+  <text x="400" y="940" font-family="Inter, sans-serif" font-size="16" fill="#444" text-anchor="middle">
+    See docs/PORTRAIT_CREATION_GUIDE.md
+  </text>
+</svg>
