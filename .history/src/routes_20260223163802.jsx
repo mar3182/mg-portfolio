@@ -19,7 +19,14 @@ const CinematicDemo = lazy(() => import('./pages/CinematicDemo'))
 
 // Concept pages (experimental designs)
 const AwardHero = lazy(() => import('./concepts/award-hero/AwardHeroPage'))
-const LivingPortrait = lazy(() => import('./concepts/award-hero/LivingPortraitHero'))
+const LivingPortrait = lazy(() => import('./concepts/living-portrait/LivingPortraitPage'))
+const LivingPortraitV2 = lazy(() => import('./concepts/living-portrait/LivingPortraitV2'))
+const LivingPortraitV3 = lazy(() => import('./concepts/living-portrait/LivingPortraitV3'))
+const LivingPortraitV4 = lazy(() => import('./concepts/living-portrait/LivingPortraitV4'))
+const LivingPortraitV5 = lazy(() => import('./concepts/living-portrait/LivingPortraitV5'))
+const LivingPortraitV6 = lazy(() => import('./concepts/living-portrait/LivingPortraitV6'))
+const AkaruStylePage = lazy(() => import('./concepts/living-portrait/AkaruStylePage'))
+const TPortfolioPage = lazy(() => import('./concepts/t-portfolio/TPortfolioPage'))
 
 export const router = createBrowserRouter([
   // Standalone demo pages (no layout wrapper)
@@ -28,6 +35,14 @@ export const router = createBrowserRouter([
   // Award-winning concept pages
   { path: 'concepts/award-hero', element: <AwardHero /> },
   { path: 'concepts/living-portrait', element: <LivingPortrait /> },
+  { path: 'concepts/living-portrait-v2', element: <LivingPortraitV2 /> },
+  { path: 'concepts/living-portrait-v3', element: <LivingPortraitV3 /> },
+  { path: 'concepts/living-portrait-v4', element: <LivingPortraitV4 /> },
+  { path: 'living-portrait', element: <LivingPortraitV4 /> },
+  { path: 'living-portrait-v5', element: <LivingPortraitV5 /> },
+  { path: 'living-portrait-v6', element: <LivingPortraitV6 /> },
+  { path: 'akaru-style', element: <AkaruStylePage /> },
+  { path: 't-portfolio', element: <TPortfolioPage /> },
   
   {
     element: <AppLayout />, // shared layout with header/menu
@@ -44,4 +59,6 @@ export const router = createBrowserRouter([
       { path: '*', element: <NotFound /> },
     ],
   },
-])
+], {
+  basename: import.meta.env.BASE_URL.replace(/\/$/, ''),
+})

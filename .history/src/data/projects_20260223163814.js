@@ -3,9 +3,6 @@
 import manifestModule from './projectImageManifest.mjs'
 const manifest = manifestModule || {}
 
-// Resolve base URL: Vite provides import.meta.env.BASE_URL, Node.js scripts use '/'
-const BASE = (typeof import.meta.env !== 'undefined' && import.meta.env.BASE_URL) || '/'
-
 /**
  * Projects with T-Shaped Spectrum Scores
  * 
@@ -61,10 +58,10 @@ export const projects = [
 ].map(p => ({
   ...p,
   thumb: manifest[p.base]?.thumb || '',
-  avif: Object.entries(manifest[p.base]?.avif || {}).map(([w,name])=>`${BASE}projects/${name} ${w}w`).join(', '),
-  webp: Object.entries(manifest[p.base]?.webp || {}).map(([w,name])=>`${BASE}projects/${name} ${w}w`).join(', '),
-  jpg: Object.entries(manifest[p.base]?.jpg || {}).map(([w,name])=>`${BASE}projects/${name} ${w}w`).join(', '),
-  image: manifest[p.base]?.jpg?.['1200'] ? `${BASE}projects/${manifest[p.base].jpg['1200']}` : ''
+  avif: Object.entries(manifest[p.base]?.avif || {}).map(([w,name])=>`${import.meta.env.BASE_URL}projects/${name} ${w}w`).join(', '),
+  webp: Object.entries(manifest[p.base]?.webp || {}).map(([w,name])=>`${import.meta.env.BASE_URL}projects/${name} ${w}w`).join(', '),
+  jpg: Object.entries(manifest[p.base]?.jpg || {}).map(([w,name])=>`${import.meta.env.BASE_URL}projects/${name} ${w}w`).join(', '),
+  image: manifest[p.base]?.jpg?.['1200'] ? `${import.meta.env.BASE_URL}projects/${manifest[p.base].jpg['1200']}` : ''
 }))
 
 export function getProjectById(id) {

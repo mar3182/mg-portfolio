@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "pnpm verify:images && vite build && node scripts/perf-budget.mjs",
+    "build": "pnpm verify:images && vite build && node scripts/perf-budget.mjs && node scripts/postbuild-ghpages.mjs",
     "perf:budget": "node scripts/perf-budget.mjs",
     "perf:budget-dry": "PERF_RATCHET=dry node scripts/perf-budget.mjs",
     "optimize:images": "node scripts/gen-images.mjs",
@@ -75,6 +75,7 @@
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
     "lighthouse": "^12.3.0",
     "sharp": "^0.33.4",
